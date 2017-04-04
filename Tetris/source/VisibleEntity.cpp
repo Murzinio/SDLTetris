@@ -12,8 +12,6 @@ VisibleEntity::VisibleEntity()
 
 VisibleEntity::~VisibleEntity()
 {
-	//for (auto & x : textures)
-		//delete x;
 }
 
 /*

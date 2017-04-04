@@ -5,15 +5,11 @@ Button::Button(EButtonType bt, ButtonCorrection correction)
 	type = bt;
 	FillTextureRects(correction);
 	FillTexture();
-	logger.Log("button instance");
 }
 
 
 Button::~Button()
 {
-	SDL_DestroyTexture(texture);
-	intptr_t adress = reinterpret_cast<uintptr_t>(texture);
-	logger.Log(std::to_string(adress));
 }
 
 void Button::FillTexture()

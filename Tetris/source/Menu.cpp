@@ -16,16 +16,12 @@ void Menu::StartLoop()
 	bool startGame{ false };
 	SDL_Event sdlQuitEvent{ SDL_QUIT };
 
-	//dstRect.w = 1920;
-	//dstRect.h = 1080;
-
 	renderer->AddToQueue(textures.background_HongKong.GetSDLTexture(), NULL, &dstRect);
 	for (int i = 0; i < buttons.size(); i++)
 		buttons[i]->AddToRenderQueue();
 
 	while (!exit && !startGame)
 	{
-		//SDL_Delay(5);
 		renderer->Clear();
 		renderer->AddToQueue(textures.background_HongKong.GetSDLTexture(), NULL, &dstRect);
 
@@ -33,7 +29,6 @@ void Menu::StartLoop()
 		
 		for (auto & x : buttons)
 		{
-			//x->SetIsPressed(false);
 			if (inputHandler.IsMouseOverButton(x))
 				x->Highlight();
 			else if (IsAnyButtonHighlited())
@@ -42,15 +37,12 @@ void Menu::StartLoop()
 			if (inputHandler.IsButtonPressed(x))// && !buttonPressHandled)
 			{
 				logger.Log("pressed");
-				//buttonPressHandled = true;
 				if (x->GetType() == EButtonType::EXIT_BUTTON)
 				{
-					//eventToPush.type = SDL_QUIT;
 					SDL_PushEvent(&sdlQuitEvent);
 				}
 				else if (x->GetType() == EButtonType::START_BUTTON)
 				{
-					//eventToPush.type = SDL_QUIT;
 					startGame = true;
 					logger.Log("start game");
 				}

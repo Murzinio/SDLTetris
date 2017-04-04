@@ -29,7 +29,6 @@ void Tetromino::Draw()
 			texture = textures.Tetromino_O.GetSDLTexture();
 			break;
 	}
-	//dstRect.y
 	dstRect.w = dstRect.h = tetrominoSize;
 	dstRect.x = gameBoardWidth / 2 - (dstRect.w / 2);
 

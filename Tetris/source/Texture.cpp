@@ -10,7 +10,6 @@ Texture::Texture()
 
 Texture::~Texture()
 {
-	//SDL_DestroyTexture(sdlTexture);
 }
 
 /*

@@ -106,7 +106,6 @@ EButtonType InputHandler::GetButtonToHighlight()
 void InputHandler::ClearButtonMouseChecks()
 {
 	isMouseOverButton = false;
-	//isButtonPressed = false;
 	buttonToHighlight = EButtonType::DEFAULT_BUTTON;
 }
 

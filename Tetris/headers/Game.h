@@ -4,11 +4,9 @@
 
 #include "Renderer.h"
 #include "InputHandler.h"
-//#include "Logger.h"
 
 #include "Menu.h"
 #include "Tetromino.h"
-#include "GameplayManager.h"
 #include "Board.h"
 
 
@@ -29,8 +27,6 @@ private:
 	Logger logger;
 	InputHandler inputHandler;
 	Renderer renderer;
-	
-	GameplayManager gameplayManager;
 
 	// to load textures and pass renderer
 	Menu dummyEntity; 
