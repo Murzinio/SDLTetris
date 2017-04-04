@@ -1,6 +1,6 @@
 #include "..\headers\Game.h"
 
-Game::Game() : dummyEntity()
+Game::Game() : dummyEntity(), mainMenu(EMenuType::MAIN_MENU), resumeMenu(EMenuType::RESUME_MENU)
 {
 	dummyEntity.PassRenderer(&renderer);
 
@@ -15,7 +15,10 @@ Game::Game() : dummyEntity()
 
 	logger.Log("Game initialised.");
 
-	CreateMainMenu();
+	mainMenu.CreateButtons();
+	resumeMenu.CreateButtons();
+	mainMenu.StartLoop();
+
 	if (!mainMenu.GetExit())
 		StartGameplayLoop();
 
@@ -37,22 +40,17 @@ Game::~Game()
 */
 
 
-void Game::CreateMainMenu()
-{
-	mainMenu.CreateButtons(EBoardType::MAIN_MENU);
-	mainMenu.StartLoop();
-}
-
 void Game::StartGameplayLoop()
 {
 	previous_update = std::chrono::high_resolution_clock::now();
 
 	SDL_Texture* texture{ NULL };
 	bool menuRequested{ false };
+	bool gameOver{ false };
 
 	currentTetromino = new Tetromino(ETetrominoType::TYPE_O);
 	allTetrominos.push_back(currentTetromino);
-	while (!menuRequested)
+	while (!menuRequested && !gameOver)
 	{
 		menuRequested = inputHandler.GetMenuRequested();
 		inputHandler.HandleEvents();
@@ -66,26 +64,62 @@ void Game::StartGameplayLoop()
 
 		if (GetTimeFromLastUpdate() >= gameplayInterval)
 		{
-			UpdateCurrentTetrominoPosition();
+			if (!currentTetromino->HasReachedBottom()
+				&& IsPositionFree({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y + currentTetromino->GetTetrominoSize() }))
+				UpdateCurrentTetrominoPosition();
+			else if (currentTetromino->GetDstRect().y == currentTetromino->GetTetrominoSize())
+				gameOver = true;
+			else
+			{
+				tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
+				placedTetrominos.push_back(currentTetromino);
+				currentTetromino = CreateNewTetromino();
+			}
+				
+
 			previous_update = std::chrono::high_resolution_clock::now();
 		}
+
+		DrawPlacedTetrominos();
+
 		currentTetromino->Draw();
 		renderer.Render();
 	}
 	if (menuRequested)
 	{
-		mainMenu.StartLoop();
+		
+		resumeMenu.StartLoop();
 		if (!mainMenu.GetExit())
 			ResumeGameplayLoop();
 	}
 }
 
+Tetromino* Game::CreateNewTetromino()
+{
+	return new Tetromino(ETetrominoType::TYPE_O);
+}
+
+void Game::DrawPlacedTetrominos()
+{
+	for (auto & x : placedTetrominos)
+		x->Draw();
+}
+
 void Game::UpdateCurrentTetrominoPosition()
 {
 	SDL_Rect dstRect = currentTetromino->GetDstRect();
+	
 	dstRect.y += currentTetromino->GetTetrominoSize();
+	if (IsPositionFree({ dstRect.x, currentTetromino->GetDstRect().y }));
+		currentTetromino->SetDstRect(&dstRect);
+}
 
-	currentTetromino->SetDstRect(&dstRect);
+bool Game::IsPositionFree(TetrominoPosition pos)
+{
+	for (auto & usedPos: tetrominoPositions)
+		if (usedPos.y == pos.y)
+			return false;
+	return true;
 }
 
 void Game::ResumeGameplayLoop()

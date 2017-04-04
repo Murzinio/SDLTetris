@@ -29,19 +29,20 @@ private:
 	Renderer renderer;
 
 	// to load textures and pass renderer
-	Menu dummyEntity; 
+	Board dummyEntity; 
 	Textures textures;
 
 	std::vector<TetrominoPosition> tetrominoPositions;
 
 	Board gameBoard;
 	Menu mainMenu;
+	Menu resumeMenu;
 
 	SDL_Rect dstRect{ 0, 0, 0, 0 };
 	
 	bool exit;
 
-	int gameplayInterval{ 1000 };
+	int gameplayInterval{ 100 };
 	std::chrono::high_resolution_clock::time_point previous_update{ std::chrono::high_resolution_clock::now() };
 	int GetTimeFromLastUpdate();
 
@@ -52,13 +53,13 @@ private:
 	int framesCounter{ 0 };
 	int counter;
 	
-	
-	void CreateMainMenu();
 	void StartGameplayLoop();
 	void UpdateCurrentTetrominoPosition();
 	void ResumeGameplayLoop();
 
-	void CreateGameBoard();
+	Tetromino* CreateNewTetromino();
+	void DrawPlacedTetrominos();
+	bool IsPositionFree(TetrominoPosition pos);
 
 public:
 	Game();

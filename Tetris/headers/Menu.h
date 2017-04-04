@@ -20,6 +20,8 @@ private:
 	Logger logger;
 	InputHandler inputHandler;
 
+	EMenuType type;
+
 	SDL_Rect dstRect{0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	int buttonCount{ 0 };
 	bool exit{ false };
@@ -27,14 +29,15 @@ private:
 
 	bool buttonPressHandled{ false };
 public:
-	Menu();
+	Menu(EMenuType menuType);
 	~Menu();
 	Button* NewButton(EButtonType bt, ButtonCorrection correction);
-	void CreateButtons(EBoardType bt);
+	void CreateButtons();
 	bool IsAnyButtonHighlited();
 	bool GetExit();
 	void StartLoop();
 
 	void Draw();
+	void SetIsResumeMenu();
 };
 

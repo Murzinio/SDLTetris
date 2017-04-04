@@ -38,6 +38,7 @@ struct Textures
 
 	/*Main menu buttons*/
 	Texture button_start;
+	Texture button_resume;
 	Texture button_options;
 	Texture button_exit;
 

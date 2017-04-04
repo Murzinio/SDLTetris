@@ -19,6 +19,9 @@ void Button::FillTexture()
 		case EButtonType::START_BUTTON:
 			texture = textures.button_start.GetSDLTexture();
 			break;
+		case EButtonType::RESUME_BUTTON:
+			texture = textures.button_resume.GetSDLTexture();
+			break;
 		case EButtonType::OPTIONS_BUTTON:
 			texture = textures.button_options.GetSDLTexture();
 			break;

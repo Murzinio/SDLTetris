@@ -1,7 +1,8 @@
 #include "..\headers\Menu.h"
 
-Menu::Menu()
+Menu::Menu(EMenuType menuType)
 {
+	type = menuType;
 }
 
 
@@ -46,7 +47,11 @@ void Menu::StartLoop()
 					startGame = true;
 					logger.Log("start game");
 				}
-					
+				else if (x->GetType() == EButtonType::RESUME_BUTTON)
+				{
+					startGame = true;
+					logger.Log("start game");
+				}
 			}
 				
 
@@ -68,16 +73,15 @@ Button* Menu::NewButton(EButtonType bt, ButtonCorrection correction)
 	return button;
 }
 
-void Menu::CreateButtons(EBoardType boardT)
+void Menu::CreateButtons()
 {
-	switch (boardT)
-	{
-		case EBoardType::MAIN_MENU:
-			buttons.push_back(NewButton(EButtonType::START_BUTTON, { 0, 0 }));
-			buttons.push_back(NewButton(EButtonType::OPTIONS_BUTTON, { 0, BUTTON_HEIGHT }));
-			buttons.push_back(NewButton(EButtonType::EXIT_BUTTON, { 0, BUTTON_HEIGHT * 2 }));
-			break;
-	}
+	if(type == EMenuType::MAIN_MENU)
+		buttons.push_back(NewButton(EButtonType::START_BUTTON, { 0, 0 }));
+	else
+		buttons.push_back(NewButton(EButtonType::RESUME_BUTTON, { 0, 0 }));
+
+	buttons.push_back(NewButton(EButtonType::OPTIONS_BUTTON, { 0, BUTTON_HEIGHT }));
+	buttons.push_back(NewButton(EButtonType::EXIT_BUTTON, { 0, BUTTON_HEIGHT * 2 }));
 }
 
 bool Menu::IsAnyButtonHighlited()

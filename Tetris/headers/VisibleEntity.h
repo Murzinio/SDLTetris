@@ -27,6 +27,7 @@ protected:
 	static Textures textures;
 
 	static int gameBoardWidth;
+	static int gameBoardHeight;
 	static int tetrominoSize;
 public:
 	VisibleEntity();

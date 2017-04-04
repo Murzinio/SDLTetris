@@ -32,5 +32,7 @@ public:
 
 	int GetTetrominoSize();
 	
+	bool HasReachedBottom();
+
 };
 

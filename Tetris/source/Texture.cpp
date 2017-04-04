@@ -4,7 +4,6 @@ SDL_Renderer* Texture::sdlRenderer;
 
 Texture::Texture()
 {
-	logger.Log("texture instance");
 }
 
 

@@ -3,7 +3,9 @@
 Logger VisibleEntity::logger;
 Renderer* VisibleEntity::renderer;
 Textures VisibleEntity::textures;
+
 int VisibleEntity::gameBoardWidth;
+int VisibleEntity::gameBoardHeight;
 
 VisibleEntity::VisibleEntity()
 {
@@ -47,6 +49,7 @@ bool VisibleEntity::LoadTextures()
 		return false;
 	/*Main menu buttons*/
 	textures.button_start.LoadTexture("mainMenu\\buttons\\start.png");
+	textures.button_resume.LoadTexture("mainMenu\\buttons\\resume.png");
 	textures.button_options.LoadTexture("mainMenu\\buttons\\options.png");
 	textures.button_exit.LoadTexture("mainMenu\\buttons\\exit.png");
 

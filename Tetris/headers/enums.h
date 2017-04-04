@@ -10,9 +10,16 @@ enum class EBoardType
 enum class EButtonType
 {
 	START_BUTTON,
+	RESUME_BUTTON,
 	OPTIONS_BUTTON,
 	EXIT_BUTTON,
 	DEFAULT_BUTTON
+};
+
+enum class EMenuType
+{
+	MAIN_MENU,
+	RESUME_MENU
 };
 
 enum class EScreenPosition

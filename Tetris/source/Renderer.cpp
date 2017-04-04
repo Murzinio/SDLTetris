@@ -10,8 +10,6 @@ Renderer::Renderer()
 Renderer::~Renderer()
 {
 	SDL_DestroyTexture(savedModifiedTexture);
-	intptr_t adress = reinterpret_cast<uintptr_t>(savedModifiedTexture);
-	logger.Log(std::to_string(adress));
 
 	// destroys all textures
 	SDL_DestroyRenderer(rendererSDL);
@@ -22,7 +20,7 @@ void Renderer::InitSDL()
 	logger.Log("Initialising SDL...");
 	SDL_Init(SDL_INIT_VIDEO);
 	gameWindow = SDL_CreateWindow("Tetris", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-	SDL_SetWindowFullscreen(gameWindow, SDL_WINDOW_FULLSCREEN);
+	//SDL_SetWindowFullscreen(gameWindow, SDL_WINDOW_FULLSCREEN);
 	if (!gameWindow)
 		logger.LogErrorSDL("SDL window initialisation error." + (std::string)SDL_GetError());
 

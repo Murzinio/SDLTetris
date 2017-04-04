@@ -54,3 +54,10 @@ int Tetromino::GetTetrominoSize()
 	return tetrominoSize;
 }
 
+bool Tetromino::HasReachedBottom()
+{
+	if (dstRect.y  > gameBoardHeight - 2 * tetrominoSize)
+		return true;
+	return false;
+}
+
