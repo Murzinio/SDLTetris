@@ -1,0 +1,44 @@
+InputHandler initialized.
+texture instance
+Initialising SDL...
+InputHandler initialized.
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+texture instance
+InputHandler initialized.
+backgrounds\hong_kong.png
+backgrounds\water.png
+backgrounds\sunset.png
+mainMenu\buttons\start.png
+mainMenu\buttons\options.png
+mainMenu\buttons\exit.png
+gameBoard\gameplayBackground.png
+gameBoard\scoreBackground.png
+tetrominos\O.png
+Textures loaded.
+Game initialised.
+button instance
+button instance
+button instance
+pressed
+start game
+Menu requested.
+pressed
+Exit requested.
+Exitting...
+13721888
+13722096
+13722304
+0
