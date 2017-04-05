@@ -52,3 +52,18 @@ public:
 	void Draw();
 };
 
+inline SDL_Rect Button::GetDstRect()
+{
+	return dstRect;
+}
+
+
+inline SDL_Rect Button::GetScreenRect()
+{
+	return dstRect;
+}
+
+inline EButtonType Button::GetType()
+{
+	return type;
+}

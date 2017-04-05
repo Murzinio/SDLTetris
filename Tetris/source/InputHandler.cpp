@@ -98,10 +98,7 @@ bool InputHandler::IsButtonPressed(Button* button)
 	return false;
 }
 
-EButtonType InputHandler::GetButtonToHighlight()
-{
-	return buttonToHighlight;
-}
+
 
 void InputHandler::ClearButtonMouseChecks()
 {
@@ -109,12 +106,5 @@ void InputHandler::ClearButtonMouseChecks()
 	buttonToHighlight = EButtonType::DEFAULT_BUTTON;
 }
 
-bool InputHandler::GetMoveRequested()
-{
-	return moveRequested;
-}
 
-ETetrominoMove InputHandler::GetMove()
-{
-	return move;
-}
+

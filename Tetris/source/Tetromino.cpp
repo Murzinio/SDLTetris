@@ -8,6 +8,8 @@ Tetromino::Tetromino(ETetrominoType t)
 {
 	type = t;
 	tetrominoSize = SCREEN_WIDTH / 30;
+	dstRect.w = dstRect.h = tetrominoSize;
+	dstRect.x = gameBoardWidth / 2 - (dstRect.w / 2);
 	dstRect.y = 64;
 }
 
@@ -29,8 +31,8 @@ void Tetromino::Draw()
 			texture = textures.Tetromino_O.GetSDLTexture();
 			break;
 	}
-	dstRect.w = dstRect.h = tetrominoSize;
-	dstRect.x = gameBoardWidth / 2 - (dstRect.w / 2);
+	
+	
 
 	renderer->AddToQueue(texture, NULL, &dstRect);
 }
@@ -49,10 +51,7 @@ void Tetromino::SetDstRect(SDL_Rect* rect)
 	dstRect = *rect;
 }
 
-int Tetromino::GetTetrominoSize()
-{
-	return tetrominoSize;
-}
+
 
 bool Tetromino::HasReachedBottom()
 {

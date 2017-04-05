@@ -49,21 +49,7 @@ void Button::AddToRenderQueue()
 	renderer->AddToQueue(texture, &srcRect, &dstRect);
 }
 
-SDL_Rect Button::GetDstRect()
-{
-	return dstRect;
-}
 
-
-SDL_Rect Button::GetScreenRect()
-{
-	return dstRect;
-}
-
-EButtonType Button::GetType()
-{
-	return type;
-}
 
 void Button::Highlight()
 {

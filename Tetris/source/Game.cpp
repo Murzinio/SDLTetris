@@ -50,6 +50,7 @@ void Game::StartGameplayLoop()
 
 	currentTetromino = new Tetromino(ETetrominoType::TYPE_O);
 	allTetrominos.push_back(currentTetromino);
+
 	while (!menuRequested && !gameOver)
 	{
 		menuRequested = inputHandler.GetMenuRequested();
@@ -61,11 +62,19 @@ void Game::StartGameplayLoop()
 
 		gameBoard.Draw();
 		
+		if (inputHandler.GetMoveRequested())
+			if (!HandleMoves())
+			{
+				tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
+				placedTetrominos.push_back(currentTetromino);
+				currentTetromino = CreateNewTetromino();
+			}
 
 		if (GetTimeFromLastUpdate() >= gameplayInterval)
 		{
+			TetrominoPosition position{ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y + currentTetromino->GetTetrominoSize() };
 			if (!currentTetromino->HasReachedBottom()
-				&& IsPositionFree({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y + currentTetromino->GetTetrominoSize() }))
+				&& IsPositionFree(position))
 				UpdateCurrentTetrominoPosition();
 			else if (currentTetromino->GetDstRect().y == currentTetromino->GetTetrominoSize())
 				gameOver = true;
@@ -75,7 +84,6 @@ void Game::StartGameplayLoop()
 				placedTetrominos.push_back(currentTetromino);
 				currentTetromino = CreateNewTetromino();
 			}
-				
 
 			previous_update = std::chrono::high_resolution_clock::now();
 		}
@@ -89,9 +97,42 @@ void Game::StartGameplayLoop()
 	{
 		
 		resumeMenu.StartLoop();
-		if (!mainMenu.GetExit())
+		if (!resumeMenu.GetExit())
 			ResumeGameplayLoop();
 	}
+}
+
+bool Game::HandleMoves()
+{
+	SDL_Rect dstRect = currentTetromino->GetDstRect();
+	TetrominoPosition position{ dstRect.x, dstRect.y };
+	ETetrominoMove move{ inputHandler.GetMove() };
+
+	switch (move)
+	{
+		case ETetrominoMove::DOWN:
+			position.y += currentTetromino->GetTetrominoSize();
+			if (IsPositionFree(position))
+				dstRect.y += currentTetromino->GetTetrominoSize();
+			else
+				return false;
+			break;
+		case ETetrominoMove::LEFT:
+			position.x -= currentTetromino->GetTetrominoSize();
+			if (IsPositionFree(position))
+				dstRect.x -= currentTetromino->GetTetrominoSize();
+			break;
+		case ETetrominoMove::RIGHT:
+			position.x += currentTetromino->GetTetrominoSize();
+			if (IsPositionFree(position))
+				dstRect.x += currentTetromino->GetTetrominoSize();
+			break;
+	}
+
+	currentTetromino->SetDstRect(&dstRect);
+	dstRect = currentTetromino->GetDstRect();
+	
+	return true;
 }
 
 Tetromino* Game::CreateNewTetromino()
@@ -110,14 +151,15 @@ void Game::UpdateCurrentTetrominoPosition()
 	SDL_Rect dstRect = currentTetromino->GetDstRect();
 	
 	dstRect.y += currentTetromino->GetTetrominoSize();
-	if (IsPositionFree({ dstRect.x, currentTetromino->GetDstRect().y }));
-		currentTetromino->SetDstRect(&dstRect);
+	TetrominoPosition position{ dstRect.x, dstRect.y };
+	//if (IsPositionFree(position));
+	currentTetromino->SetDstRect(&dstRect);
 }
 
-bool Game::IsPositionFree(TetrominoPosition pos)
+bool Game::IsPositionFree(TetrominoPosition &pos)
 {
 	for (auto & usedPos: tetrominoPositions)
-		if (usedPos.y == pos.y)
+		if (usedPos.x == pos.x && usedPos.y == pos.y)
 			return false;
 	return true;
 }

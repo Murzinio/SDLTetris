@@ -18,8 +18,8 @@ void Menu::StartLoop()
 	SDL_Event sdlQuitEvent{ SDL_QUIT };
 
 	renderer->AddToQueue(textures.background_HongKong.GetSDLTexture(), NULL, &dstRect);
-	for (int i = 0; i < buttons.size(); i++)
-		buttons[i]->AddToRenderQueue();
+	for (auto & x : buttons)
+		x->AddToRenderQueue();
 
 	while (!exit && !startGame)
 	{

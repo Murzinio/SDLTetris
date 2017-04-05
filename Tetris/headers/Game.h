@@ -42,7 +42,7 @@ private:
 	
 	bool exit;
 
-	int gameplayInterval{ 100 };
+	int gameplayInterval{ 1000 };
 	std::chrono::high_resolution_clock::time_point previous_update{ std::chrono::high_resolution_clock::now() };
 	int GetTimeFromLastUpdate();
 
@@ -54,12 +54,13 @@ private:
 	int counter;
 	
 	void StartGameplayLoop();
+	bool HandleMoves();
 	void UpdateCurrentTetrominoPosition();
 	void ResumeGameplayLoop();
 
 	Tetromino* CreateNewTetromino();
 	void DrawPlacedTetrominos();
-	bool IsPositionFree(TetrominoPosition pos);
+	bool IsPositionFree(TetrominoPosition &pos);
 
 public:
 	Game();

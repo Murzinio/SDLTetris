@@ -51,3 +51,17 @@ public:
 	EButtonType GetButtonToHighlight();
 };
 
+inline bool InputHandler::GetMoveRequested()
+{
+	return moveRequested;
+}
+
+inline ETetrominoMove InputHandler::GetMove()
+{
+	return move;
+}
+
+inline EButtonType InputHandler::GetButtonToHighlight()
+{
+	return buttonToHighlight;
+}
