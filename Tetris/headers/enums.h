@@ -49,3 +49,10 @@ enum class EBackground
 	WATER,
 	SUNSET
 };
+
+enum class EBoardBoundary
+{
+	LEFT,
+	RIGHT,
+	BOTTOM
+};

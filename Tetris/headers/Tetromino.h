@@ -33,7 +33,7 @@ public:
 	int GetTetrominoSize();
 	
 	bool HasReachedBottom();
-
+	bool HasReachedBoundary(EBoardBoundary boundary);
 };
 
 inline int Tetromino::GetTetrominoSize()

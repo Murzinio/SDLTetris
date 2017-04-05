@@ -60,3 +60,19 @@ bool Tetromino::HasReachedBottom()
 	return false;
 }
 
+bool Tetromino::HasReachedBoundary(EBoardBoundary boundary)
+{
+	switch (boundary)
+	{
+		case EBoardBoundary::RIGHT:
+			if (dstRect.x < gameBoardWidth - 2 * tetrominoSize)
+				return false;
+			break;
+		case EBoardBoundary::LEFT:
+			if (dstRect.x > tetrominoSize)
+				return false;
+			break;
+	}
+	
+	return true;
+}

@@ -75,7 +75,7 @@ void Game::StartGameplayLoop()
 			TetrominoPosition position{ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y + currentTetromino->GetTetrominoSize() };
 			if (!currentTetromino->HasReachedBottom()
 				&& IsPositionFree(position))
-				UpdateCurrentTetrominoPosition();
+				UpdateTetrominoPosition();
 			else if (currentTetromino->GetDstRect().y == currentTetromino->GetTetrominoSize())
 				gameOver = true;
 			else
@@ -112,19 +112,19 @@ bool Game::HandleMoves()
 	{
 		case ETetrominoMove::DOWN:
 			position.y += currentTetromino->GetTetrominoSize();
-			if (IsPositionFree(position))
+			if (IsPositionFree(position) && !currentTetromino->HasReachedBottom())
 				dstRect.y += currentTetromino->GetTetrominoSize();
-			else
+			else if(currentTetromino->HasReachedBottom())
 				return false;
 			break;
 		case ETetrominoMove::LEFT:
 			position.x -= currentTetromino->GetTetrominoSize();
-			if (IsPositionFree(position))
+			if (IsPositionFree(position) && !currentTetromino->HasReachedBoundary(EBoardBoundary::LEFT))
 				dstRect.x -= currentTetromino->GetTetrominoSize();
 			break;
 		case ETetrominoMove::RIGHT:
 			position.x += currentTetromino->GetTetrominoSize();
-			if (IsPositionFree(position))
+			if (IsPositionFree(position) && !currentTetromino->HasReachedBoundary(EBoardBoundary::RIGHT))
 				dstRect.x += currentTetromino->GetTetrominoSize();
 			break;
 	}
@@ -146,7 +146,7 @@ void Game::DrawPlacedTetrominos()
 		x->Draw();
 }
 
-void Game::UpdateCurrentTetrominoPosition()
+void Game::UpdateTetrominoPosition()
 {
 	SDL_Rect dstRect = currentTetromino->GetDstRect();
 	
@@ -163,6 +163,8 @@ bool Game::IsPositionFree(TetrominoPosition &pos)
 			return false;
 	return true;
 }
+
+
 
 void Game::ResumeGameplayLoop()
 {

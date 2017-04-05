@@ -55,12 +55,13 @@ private:
 	
 	void StartGameplayLoop();
 	bool HandleMoves();
-	void UpdateCurrentTetrominoPosition();
+	void UpdateTetrominoPosition();
 	void ResumeGameplayLoop();
 
 	Tetromino* CreateNewTetromino();
 	void DrawPlacedTetrominos();
 	bool IsPositionFree(TetrominoPosition &pos);
+	
 
 public:
 	Game();
