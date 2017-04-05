@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "VisibleEntity.h"
+#include "TetrominoBlock.h"
 
 class VisibleEntity;
 
@@ -12,14 +13,18 @@ class Tetromino
 	: public VisibleEntity
 {
 private:
+	std::vector<TetrominoBlock*> blocks;
+
 	ETetrominoType type;
 
 	static SDL_Texture* textureO;
 
 	SDL_Rect dstRect;
 
-	void FillTextures();
-	
+	bool isAtTop{ true };
+
+	void CreateBlocks();
+
 public:
 	
 	Tetromino(ETetrominoType t);
@@ -30,13 +35,22 @@ public:
 
 	void Draw();
 
-	int GetTetrominoSize();
+	int GetTetrominoBlockSize();
 	
+	bool GetIsAtTop();
 	bool HasReachedBottom();
 	bool HasReachedBoundary(EBoardBoundary boundary);
+	void Move(ETetrominoMove move);
+
+	std::vector<Position> GetBlocksPositions();
 };
 
-inline int Tetromino::GetTetrominoSize()
+inline int Tetromino::GetTetrominoBlockSize()
 {
-	return tetrominoSize;
+	return tetrominoBlockSize;
+}
+
+inline bool Tetromino::GetIsAtTop()
+{
+	return isAtTop;
 }

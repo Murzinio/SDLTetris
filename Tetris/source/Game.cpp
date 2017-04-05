@@ -65,18 +65,22 @@ void Game::StartGameplayLoop()
 		if (inputHandler.GetMoveRequested())
 			if (!HandleMoves())
 			{
-				tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
-				placedTetrominos.push_back(currentTetromino);
-				currentTetromino = CreateNewTetromino();
+				if (currentTetromino->GetIsAtTop() && !IsPositionFree(ETetrominoMove::DOWN))
+					gameOver = true;
+				else
+				{
+					tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
+					placedTetrominos.push_back(currentTetromino);
+					currentTetromino = CreateNewTetromino();
+				}
+				
 			}
 
 		if (GetTimeFromLastUpdate() >= gameplayInterval)
 		{
-			TetrominoPosition position{ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y + currentTetromino->GetTetrominoSize() };
-			if (!currentTetromino->HasReachedBottom()
-				&& IsPositionFree(position))
-				UpdateTetrominoPosition();
-			else if (currentTetromino->GetDstRect().y == currentTetromino->GetTetrominoSize())
+			if (!currentTetromino->HasReachedBottom() && IsPositionFree(ETetrominoMove::DOWN))
+				currentTetromino->Move(ETetrominoMove::DOWN);
+			else if (currentTetromino->GetIsAtTop() && !IsPositionFree(ETetrominoMove::DOWN))
 				gameOver = true;
 			else
 			{
@@ -104,33 +108,12 @@ void Game::StartGameplayLoop()
 
 bool Game::HandleMoves()
 {
-	SDL_Rect dstRect = currentTetromino->GetDstRect();
-	TetrominoPosition position{ dstRect.x, dstRect.y };
 	ETetrominoMove move{ inputHandler.GetMove() };
 
-	switch (move)
-	{
-		case ETetrominoMove::DOWN:
-			position.y += currentTetromino->GetTetrominoSize();
-			if (IsPositionFree(position) && !currentTetromino->HasReachedBottom())
-				dstRect.y += currentTetromino->GetTetrominoSize();
-			else if(currentTetromino->HasReachedBottom())
-				return false;
-			break;
-		case ETetrominoMove::LEFT:
-			position.x -= currentTetromino->GetTetrominoSize();
-			if (IsPositionFree(position) && !currentTetromino->HasReachedBoundary(EBoardBoundary::LEFT))
-				dstRect.x -= currentTetromino->GetTetrominoSize();
-			break;
-		case ETetrominoMove::RIGHT:
-			position.x += currentTetromino->GetTetrominoSize();
-			if (IsPositionFree(position) && !currentTetromino->HasReachedBoundary(EBoardBoundary::RIGHT))
-				dstRect.x += currentTetromino->GetTetrominoSize();
-			break;
-	}
-
-	currentTetromino->SetDstRect(&dstRect);
-	dstRect = currentTetromino->GetDstRect();
+	if (move == ETetrominoMove::DOWN && (currentTetromino->HasReachedBottom() || !IsPositionFree(move)))
+		return false;
+	else if (IsPositionFree(move))
+		currentTetromino->Move(move);
 	
 	return true;
 }
@@ -146,21 +129,51 @@ void Game::DrawPlacedTetrominos()
 		x->Draw();
 }
 
-void Game::UpdateTetrominoPosition()
+void Game::MoveTetrominoDown()
 {
 	SDL_Rect dstRect = currentTetromino->GetDstRect();
-	
-	dstRect.y += currentTetromino->GetTetrominoSize();
-	TetrominoPosition position{ dstRect.x, dstRect.y };
-	//if (IsPositionFree(position));
+	dstRect.y += currentTetromino->GetTetrominoBlockSize();
+
 	currentTetromino->SetDstRect(&dstRect);
 }
 
-bool Game::IsPositionFree(TetrominoPosition &pos)
+bool Game::IsPositionFree(ETetrominoMove move)
 {
-	for (auto & usedPos: tetrominoPositions)
-		if (usedPos.x == pos.x && usedPos.y == pos.y)
-			return false;
+	std::vector<Position> placedBlocksPositions;
+	
+	for (auto & x : placedTetrominos)
+	{
+		std::vector<Position> blocksPositions{ x->GetBlocksPositions() };
+		for (auto & y : blocksPositions)
+			placedBlocksPositions.push_back(y);
+	}
+
+	int tetrominoBlockSize{ currentTetromino->GetTetrominoBlockSize() };
+
+	std::vector<Position> currentBlocksPositions{ currentTetromino->GetBlocksPositions() };
+	switch (move)
+	{
+		case ETetrominoMove::DOWN:
+			for (auto & currentPos : currentBlocksPositions)
+				for (auto & placedPos : placedBlocksPositions)
+					if (currentPos.x == placedPos.x && currentPos.y + tetrominoBlockSize == placedPos.y)
+						return false;
+			break;
+		case ETetrominoMove::LEFT:
+			for (auto & currentPos : currentBlocksPositions)
+				for (auto & placedPos : placedBlocksPositions)
+					if (currentPos.x - tetrominoBlockSize == placedPos.x && currentPos.y == placedPos.y)
+						return false;
+			break;
+		case ETetrominoMove::RIGHT:
+			for (auto & currentPos : currentBlocksPositions)
+				for (auto & placedPos : placedBlocksPositions)
+					if (currentPos.x + tetrominoBlockSize == placedPos.x && currentPos.y == placedPos.y)
+						return false;
+			break;
+	}
+	
+
 	return true;
 }
 

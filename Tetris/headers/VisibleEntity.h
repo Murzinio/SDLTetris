@@ -28,7 +28,7 @@ protected:
 
 	static int gameBoardWidth;
 	static int gameBoardHeight;
-	static int tetrominoSize;
+	static int tetrominoBlockSize;
 public:
 	VisibleEntity();
 	virtual ~VisibleEntity() = 0;

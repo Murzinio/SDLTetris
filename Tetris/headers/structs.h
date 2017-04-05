@@ -23,7 +23,7 @@ struct TetrominoTexture
 	SDL_Texture* texture;
 };
 
-struct TetrominoPosition
+struct Position
 {
 	int x;
 	int y;
@@ -44,11 +44,12 @@ struct Textures
 
 	/*Game board*/
 	Texture GameBoard;
+	Texture GameBoardGrid;
 	Texture ScoreBoard;
 
 	/*Tetrominos*/
 	Texture Tetromino_I;
-	Texture Tetromino_O;
+	Texture TetrominoBlock_Yellow;
 	Texture Tetromino_T;
 
 	Texture Tetromino_J;
@@ -73,10 +74,4 @@ struct Options
 
 	bool soundEffects;
 	int soundEffectsVolume;
-};
-
-struct Position
-{
-	int x;
-	int y;
 };

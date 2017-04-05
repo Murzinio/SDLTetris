@@ -32,7 +32,7 @@ private:
 	Board dummyEntity; 
 	Textures textures;
 
-	std::vector<TetrominoPosition> tetrominoPositions;
+	std::vector<Position> tetrominoPositions;
 
 	Board gameBoard;
 	Menu mainMenu;
@@ -55,12 +55,12 @@ private:
 	
 	void StartGameplayLoop();
 	bool HandleMoves();
-	void UpdateTetrominoPosition();
+	void MoveTetrominoDown();
 	void ResumeGameplayLoop();
 
 	Tetromino* CreateNewTetromino();
 	void DrawPlacedTetrominos();
-	bool IsPositionFree(TetrominoPosition &pos);
+	bool IsPositionFree(ETetrominoMove move);
 	
 
 public:

@@ -54,6 +54,9 @@
     <ClCompile Include="source\Background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\TetrominoBlock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\enums.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="headers\Background.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\TetrominoBlock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

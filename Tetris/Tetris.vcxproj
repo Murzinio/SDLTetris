@@ -133,6 +133,7 @@
     <ClCompile Include="source\Menu.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\Tetromino.cpp" />
+    <ClCompile Include="source\TetrominoBlock.cpp" />
     <ClCompile Include="source\Texture.cpp" />
     <ClCompile Include="source\VisibleEntity.cpp" />
   </ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="headers\Renderer.h" />
     <ClInclude Include="headers\structs.h" />
     <ClInclude Include="headers\Tetromino.h" />
+    <ClInclude Include="headers\TetrominoBlock.h" />
     <ClInclude Include="headers\Texture.h" />
     <ClInclude Include="headers\VisibleEntity.h" />
   </ItemGroup>

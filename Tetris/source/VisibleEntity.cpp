@@ -7,6 +7,8 @@ Textures VisibleEntity::textures;
 int VisibleEntity::gameBoardWidth;
 int VisibleEntity::gameBoardHeight;
 
+int VisibleEntity::tetrominoBlockSize;
+
 VisibleEntity::VisibleEntity()
 {
 }
@@ -54,11 +56,12 @@ bool VisibleEntity::LoadTextures()
 	textures.button_exit.LoadTexture("mainMenu\\buttons\\exit.png");
 
 	/*Game board*/
-	textures.GameBoard.LoadTexture("gameBoard\\gameplayBackground.png");
-	textures.ScoreBoard.LoadTexture("gameBoard\\scoreBackground.png");
+	textures.GameBoard.LoadTexture("gameBoard\\gameBoard.png");
+	textures.GameBoardGrid.LoadTexture("gameBoard\\gameBoardGrid.png");
+	textures.ScoreBoard.LoadTexture("gameBoard\\scoreBoard.png");
 
 	/*Tetrominos*/
-	textures.Tetromino_O.LoadTexture("tetrominos\\O.png");
+	textures.TetrominoBlock_Yellow.LoadTexture("tetrominoBlocks\\Yellow.png");
 
 	/*Texture Tetromino_I;
 	Texture Tetromino_O;

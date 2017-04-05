@@ -56,3 +56,15 @@ enum class EBoardBoundary
 	RIGHT,
 	BOTTOM
 };
+
+enum class ETetrominoBlockColor
+{
+	YELLOW
+};
+
+enum class EPositionAxis
+{
+	X,
+	Y,
+	Z
+};
