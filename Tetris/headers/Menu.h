@@ -8,7 +8,6 @@
 
 #include <memory>
 
-enum class EBoardType;
 enum class EButtonType;
 enum class EScreenPosition;
 

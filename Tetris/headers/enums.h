@@ -1,12 +1,5 @@
 #pragma once
 
-enum class EBoardType
-{
-	MAIN_MENU,
-	OPTIONS_MENU,
-	GAME_BOARD
-};
-
 enum class EButtonType
 {
 	START_BUTTON,
@@ -33,7 +26,12 @@ enum class EScreenPosition
 
 enum class ETetrominoType
 {
-	TYPE_O
+	I,
+	O,
+	T,
+	J,
+	L,
+	COUNT
 };
 
 enum class ETetrominoMove
@@ -54,17 +52,19 @@ enum class EBoardBoundary
 {
 	LEFT,
 	RIGHT,
-	BOTTOM
 };
 
 enum class ETetrominoBlockColor
 {
-	YELLOW
+	TURQUOISE,
+	YELLOW,
+	PURPLE,
+	BLUE
 };
 
 enum class EPositionAxis
 {
 	X,
 	Y,
-	Z
+	Z,
 };

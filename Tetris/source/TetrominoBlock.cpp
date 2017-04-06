@@ -11,6 +11,15 @@ TetrominoBlock::TetrominoBlock(ETetrominoBlockColor c, SDL_Rect &dstr)
 		case ETetrominoBlockColor::YELLOW:
 			texture = textures.TetrominoBlock_Yellow.GetSDLTexture();
 			break;
+		case ETetrominoBlockColor::TURQUOISE:
+			texture = textures.TetrominoBlock_Turquoise.GetSDLTexture();
+			break;
+		case ETetrominoBlockColor::PURPLE:
+			texture = textures.TetrominoBlock_Purple.GetSDLTexture();
+			break;
+		case ETetrominoBlockColor::BLUE:
+			texture = textures.TetrominoBlock_Blue.GetSDLTexture();
+			break;
 	}
 }
 

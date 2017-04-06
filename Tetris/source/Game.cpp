@@ -22,7 +22,7 @@ Game::Game() : dummyEntity(), mainMenu(EMenuType::MAIN_MENU), resumeMenu(EMenuTy
 	if (!mainMenu.GetExit())
 		StartGameplayLoop();
 
-	
+	srand(time(NULL));
 }
 
 Game::~Game()
@@ -48,7 +48,7 @@ void Game::StartGameplayLoop()
 	bool menuRequested{ false };
 	bool gameOver{ false };
 
-	currentTetromino = new Tetromino(ETetrominoType::TYPE_O);
+	currentTetromino = CreateNewTetromino();
 	allTetrominos.push_back(currentTetromino);
 
 	while (!menuRequested && !gameOver)
@@ -120,7 +120,10 @@ bool Game::HandleMoves()
 
 Tetromino* Game::CreateNewTetromino()
 {
-	return new Tetromino(ETetrominoType::TYPE_O);
+	int typesCount{ (int)ETetrominoType::COUNT };
+	--typesCount;
+	int random{ rand() % typesCount + 0 };
+	return new Tetromino((ETetrominoType)random);
 }
 
 void Game::DrawPlacedTetrominos()

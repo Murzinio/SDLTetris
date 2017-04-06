@@ -31,12 +31,19 @@ void Tetromino::CreateBlocks()
 	SDL_Rect dstRect{ 0, 0, tetrominoBlockSize , tetrominoBlockSize };
 	switch (type)
 	{	
-		case ETetrominoType::TYPE_O:
+		case ETetrominoType::I:
+			for (int i = 0; i < 4; ++i)
+			{
+				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
+				dstRect.y = tetrominoBlockSize;
+				blocks.push_back(new TetrominoBlock(ETetrominoBlockColor::TURQUOISE, dstRect));
+			}
+			break;
+		case ETetrominoType::O:
 			for (int i = 0; i < 2; ++i)
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = tetrominoBlockSize;
-
 				blocks.push_back(new TetrominoBlock(ETetrominoBlockColor::YELLOW, dstRect));
 			}
 			for (int i = 0; i < 2; ++i)
@@ -45,6 +52,39 @@ void Tetromino::CreateBlocks()
 				dstRect.y = 2 * tetrominoBlockSize;
 				blocks.push_back(new TetrominoBlock(ETetrominoBlockColor::YELLOW, dstRect));
 			}
+			break;
+		case ETetrominoType::T:
+			for (int i = 0; i < 3; ++i)
+			{
+				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
+				dstRect.y = tetrominoBlockSize;
+				blocks.push_back(new TetrominoBlock(ETetrominoBlockColor::PURPLE, dstRect));
+			}
+			dstRect.x = gameBoardWidth / 2;
+			dstRect.y = 2 * tetrominoBlockSize;
+			blocks.push_back(new TetrominoBlock(ETetrominoBlockColor::PURPLE, dstRect));
+			break;
+		case ETetrominoType::J:
+			for (int i = 0; i < 3; ++i)
+			{
+				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
+				dstRect.y = tetrominoBlockSize;
+				blocks.push_back(new TetrominoBlock(ETetrominoBlockColor::BLUE, dstRect));
+			}
+			dstRect.x = gameBoardWidth / 2 + tetrominoBlockSize;
+			dstRect.y = 2 * tetrominoBlockSize;
+			blocks.push_back(new TetrominoBlock(ETetrominoBlockColor::BLUE, dstRect));
+			break;
+		case ETetrominoType::L:
+			for (int i = 0; i < 3; ++i)
+			{
+				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
+				dstRect.y = tetrominoBlockSize;
+				blocks.push_back(new TetrominoBlock(ETetrominoBlockColor::BLUE, dstRect));
+			}
+			dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize;
+			dstRect.y = 2 * tetrominoBlockSize;
+			blocks.push_back(new TetrominoBlock(ETetrominoBlockColor::BLUE, dstRect));
 			break;
 	}
 }

@@ -44,13 +44,13 @@ struct Textures
 
 	/*Game board*/
 	Texture GameBoard;
-	Texture GameBoardGrid;
 	Texture ScoreBoard;
 
 	/*Tetrominos*/
-	Texture Tetromino_I;
+	Texture TetrominoBlock_Turquoise;
 	Texture TetrominoBlock_Yellow;
-	Texture Tetromino_T;
+	Texture TetrominoBlock_Purple;
+	Texture TetrominoBlock_Blue;
 
 	Texture Tetromino_J;
 	Texture Tetromino_L;

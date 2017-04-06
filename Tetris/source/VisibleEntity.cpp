@@ -57,12 +57,14 @@ bool VisibleEntity::LoadTextures()
 
 	/*Game board*/
 	textures.GameBoard.LoadTexture("gameBoard\\gameBoard.png");
-	textures.GameBoardGrid.LoadTexture("gameBoard\\gameBoardGrid.png");
 	textures.ScoreBoard.LoadTexture("gameBoard\\scoreBoard.png");
 
 	/*Tetrominos*/
 	textures.TetrominoBlock_Yellow.LoadTexture("tetrominoBlocks\\Yellow.png");
-
+	textures.TetrominoBlock_Turquoise.LoadTexture("tetrominoBlocks\\Turquoise.png");
+	textures.TetrominoBlock_Purple.LoadTexture("tetrominoBlocks\\Purple.png");
+	textures.TetrominoBlock_Blue.LoadTexture("tetrominoBlocks\\Blue.png");
+	
 	/*Texture Tetromino_I;
 	Texture Tetromino_O;
 	Texture Tetromino_T;

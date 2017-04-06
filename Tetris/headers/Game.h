@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <chrono>
+#include <stdlib.h> 
 
 #include "Renderer.h"
 #include "InputHandler.h"
@@ -10,7 +11,6 @@
 #include "Board.h"
 
 
-enum class EBoardType;
 enum class EScreenPosition;
 enum class ETetrominoType;
 struct TetrominoTexture;
