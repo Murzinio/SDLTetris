@@ -2,7 +2,6 @@
 
 SDL_Texture* Tetromino::textureO;
 
-
 Tetromino::Tetromino(ETetrominoType t)
 {
 	type = t;
@@ -10,7 +9,6 @@ Tetromino::Tetromino(ETetrominoType t)
 	tetrominoBlockSize = SCREEN_WIDTH / 60;
 	CreateBlocks();
 }
-
 
 Tetromino::~Tetromino()
 {

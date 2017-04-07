@@ -73,9 +73,7 @@ void Game::StartGameplayLoop()
 					placedTetrominos.push_back(currentTetromino);
 					currentTetromino = CreateNewTetromino();
 				}
-				
 			}
-
 		if (GetTimeFromLastUpdate() >= gameplayInterval)
 		{
 			if (!currentTetromino->HasReachedBottom() && IsPositionFree(ETetrominoMove::DOWN))
@@ -191,8 +189,6 @@ bool Game::IsPositionFree(ETetrominoMove move)
 	return true;
 }
 
-
-
 void Game::ResumeGameplayLoop()
 {
 	SDL_Texture* texture{ NULL };
@@ -220,7 +216,6 @@ void Game::ResumeGameplayLoop()
 		if (!mainMenu.GetExit())
 			ResumeGameplayLoop();
 	}
-	
 }
 
 int Game::GetTimeFromLastUpdate()

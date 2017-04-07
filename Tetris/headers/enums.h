@@ -15,18 +15,6 @@ enum class EMenuType
 	RESUME_MENU
 };
 
-enum class ETetrominoType
-{
-	I,
-	O,
-	T,
-	J,
-	L,
-	S,
-	Z,
-	COUNT
-};
-
 enum class ETetrominoMove
 {
 	LEFT,
@@ -57,6 +45,18 @@ enum class ETetrominoBlockColor
 	ORANGE,
 	GREEN,
 	RED
+};
+
+enum class ETetrominoType
+{
+	I,
+	O,
+	T,
+	J,
+	L,
+	S,
+	Z,
+	COUNT
 };
 
 enum class EPositionAxis

@@ -32,9 +32,6 @@ public:
 	converts it to SDL_Texture using GetTextureFromSurface().*/
 	bool LoadTexture(std::string path); 
 
-	void SetBlendMode();
-	void SetSourceRect();
-
 	SDL_Texture* GetSDLTexture();
 };
 

@@ -67,7 +67,7 @@ void Menu::StartLoop()
 
 
 
-Button* Menu::NewButton(EButtonType bt, ButtonCorrection correction)
+Button* Menu::NewButton(EButtonType bt, Position correction)
 {
 	Button* button = new Button(bt, correction);
 	return button;

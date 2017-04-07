@@ -30,13 +30,12 @@ private:
 public:
 	Menu(EMenuType menuType);
 	~Menu();
-	Button* NewButton(EButtonType bt, ButtonCorrection correction);
+	Button* NewButton(EButtonType bt, Position correction);
 	void CreateButtons();
 	bool IsAnyButtonHighlited();
 	bool GetExit();
 	void StartLoop();
 
 	void Draw();
-	void SetIsResumeMenu();
 };
 

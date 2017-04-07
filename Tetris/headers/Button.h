@@ -9,8 +9,6 @@ enum class EScreenPosition;
 class Logger;
 class Renderer;
 
-struct ButtonCorrection;
-
 class Button
 	: public VisibleEntity
 {
@@ -28,11 +26,11 @@ private:
 	bool isHighlited{ false };
 	bool isPressed{ false };
 
-	void FillTextureRects(ButtonCorrection correction);
+	void FillTextureRects(Position correction);
 	void FillTexture();
 	
 public:
-	Button(EButtonType bt, ButtonCorrection correction);
+	Button(EButtonType bt, Position correction);
 	~Button();
 
 	void Highlight();

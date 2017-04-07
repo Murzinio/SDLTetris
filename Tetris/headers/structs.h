@@ -4,19 +4,6 @@
 #include "enums.h"
 #include "Texture.h"
 
-struct ButtonCorrection
-{
-	int x;
-	int y;
-};
-
-struct TextureColor
-{
-	Uint8 r;
-	Uint8 g;
-	Uint8 b;
-};
-
 struct TetrominoTexture
 {
 	ETetrominoType type;

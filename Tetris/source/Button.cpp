@@ -1,6 +1,6 @@
 #include "..\headers\Button.h"
 
-Button::Button(EButtonType bt, ButtonCorrection correction)
+Button::Button(EButtonType bt, Position correction)
 {
 	type = bt;
 	FillTextureRects(correction);
@@ -31,7 +31,7 @@ void Button::FillTexture()
 	}
 }
 
-void Button::FillTextureRects(ButtonCorrection correction)
+void Button::FillTextureRects(Position correction)
 {
 	dstRect.w = 512;
 	dstRect.h = 128;
