@@ -121,7 +121,7 @@ bool Game::HandleMoves()
 std::shared_ptr<Tetromino> Game::CreateNewTetromino()
 {
 	int typesCount{ (int)ETetrominoType::COUNT };
-	int random{ rand() % typesCount + 0 };
+	int random{ rand() % typesCount };
 	while (random == previousRandom)
 	{
 		random = rand() % typesCount + 0;

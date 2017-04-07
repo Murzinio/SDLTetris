@@ -8,6 +8,7 @@ Tetromino::Tetromino(ETetrominoType t)
 	
 	tetrominoBlockSize = SCREEN_WIDTH / 60;
 	CreateBlocks();
+	srand(time(NULL));
 }
 
 Tetromino::~Tetromino()
@@ -250,6 +251,10 @@ void Tetromino::Rotate()
 void Tetromino::CreateBlocks()
 {
 	SDL_Rect dstRect{ 0, 0, tetrominoBlockSize , tetrominoBlockSize };
+
+	int colorsCount{ (int)ETetrominoBlockColor::COUNT };
+	int random{ rand() % colorsCount };
+
 	switch (type)
 	{	
 		case ETetrominoType::I:
@@ -257,7 +262,7 @@ void Tetromino::CreateBlocks()
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::TURQUOISE, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			break;
 		case ETetrominoType::O:
@@ -265,13 +270,13 @@ void Tetromino::CreateBlocks()
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::YELLOW, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			for (int i = 0; i < 2; ++i)
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = 2 * tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::YELLOW, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			break;
 		case ETetrominoType::T:
@@ -279,46 +284,46 @@ void Tetromino::CreateBlocks()
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::PURPLE, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			dstRect.x = gameBoardWidth / 2;
 			dstRect.y = 2 * tetrominoBlockSize;
-			blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::PURPLE, dstRect));
+			blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			break;
 		case ETetrominoType::J:
 			for (int i = 0; i < 3; ++i)
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::BLUE, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			dstRect.x = gameBoardWidth / 2 + tetrominoBlockSize;
 			dstRect.y = 2 * tetrominoBlockSize;
-			blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::BLUE, dstRect));
+			blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			break;
 		case ETetrominoType::L:
 			for (int i = 0; i < 3; ++i)
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::ORANGE, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize;
 			dstRect.y = 2 * tetrominoBlockSize;
-			blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::ORANGE, dstRect));
+			blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			break;
 		case ETetrominoType::S:
 			for (int i = 1; i < 3; ++i)
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::GREEN, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			for (int i = 0; i < 2; ++i)
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = 2 * tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::GREEN, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			break;
 		case ETetrominoType::Z:
@@ -326,13 +331,13 @@ void Tetromino::CreateBlocks()
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::RED, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			for (int i = 1; i < 3; ++i)
 			{
 				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
 				dstRect.y = 2 * tetrominoBlockSize;
-				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor::RED, dstRect));
+				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			break;
 	}
