@@ -20,7 +20,7 @@ Game::Game() : dummyEntity(), mainMenu(EMenuType::MAIN_MENU), resumeMenu(EMenuTy
 	mainMenu.StartLoop();
 
 	if (!mainMenu.GetExit())
-		StartGameplayLoop();
+		StartGameplayLoop(false);
 
 	srand(time(NULL));
 }
@@ -37,7 +37,7 @@ Game::~Game()
 */
 
 
-void Game::StartGameplayLoop()
+void Game::StartGameplayLoop(bool resume)
 {
 	previous_update = std::chrono::high_resolution_clock::now();
 
@@ -45,8 +45,11 @@ void Game::StartGameplayLoop()
 	bool menuRequested{ false };
 	bool gameOver{ false };
 
-	currentTetromino = CreateNewTetromino();
-	allTetrominos.push_back(currentTetromino);
+	if (!resume)
+	{
+		currentTetromino = CreateNewTetromino();
+		allTetrominos.push_back(currentTetromino);
+	}
 
 	while (!menuRequested && !gameOver)
 	{
@@ -97,10 +100,9 @@ void Game::StartGameplayLoop()
 	}
 	if (menuRequested)
 	{
-		
 		resumeMenu.StartLoop();
 		if (!resumeMenu.GetExit())
-			ResumeGameplayLoop();
+			StartGameplayLoop(true);
 	}
 }
 
@@ -210,35 +212,6 @@ bool Game::IsPositionFree(ETetrominoMove move)
 	}
 
 	return true;
-}
-
-void Game::ResumeGameplayLoop()
-{
-	SDL_Texture* texture{ NULL };
-	bool menuRequested{ false };
-	while (!menuRequested)
-	{
-		menuRequested = inputHandler.GetMenuRequested();
-		inputHandler.HandleEvents();
-		renderer.Clear();
-
-		texture = textures.background_Sunset.GetSDLTexture();
-		renderer.AddToQueue(texture, NULL, NULL);
-
-		gameBoard.Draw();
-
-		if (GetTimeFromLastUpdate() >= gameplayInterval)
-		{
-			previous_update = std::chrono::high_resolution_clock::now();
-		}
-		renderer.Render();
-	}
-	if (menuRequested)
-	{
-		mainMenu.StartLoop();
-		if (!mainMenu.GetExit())
-			ResumeGameplayLoop();
-	}
 }
 
 int Game::GetTimeFromLastUpdate()

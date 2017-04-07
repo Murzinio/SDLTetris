@@ -53,11 +53,10 @@ private:
 	int framesCounter{ 0 };
 	int counter;
 	
-	void StartGameplayLoop();
+	void StartGameplayLoop(bool resume);
 	int previousRandom{ 0 };
 	bool HandleMoves();
 	void MoveTetrominoDown();
-	void ResumeGameplayLoop();
 
 	std::shared_ptr<Tetromino> CreateNewTetromino();
 	void DrawPlacedTetrominos();
