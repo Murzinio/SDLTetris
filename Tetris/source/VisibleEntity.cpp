@@ -4,10 +4,7 @@ Logger VisibleEntity::logger;
 Renderer* VisibleEntity::renderer;
 Textures VisibleEntity::textures;
 
-int VisibleEntity::gameBoardWidth;
-int VisibleEntity::gameBoardHeight;
 
-int VisibleEntity::tetrominoBlockSize;
 
 VisibleEntity::VisibleEntity()
 {

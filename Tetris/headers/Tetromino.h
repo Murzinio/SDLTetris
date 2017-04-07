@@ -37,8 +37,6 @@ public:
 	void SetDstRect(SDL_Rect* rect);
 
 	void Draw();
-
-	int GetTetrominoBlockSize();
 	
 	bool GetIsAtTop();
 	bool HasReachedBottom();
@@ -48,11 +46,6 @@ public:
 
 	std::vector<Position> GetBlocksPositions();
 };
-
-inline int Tetromino::GetTetrominoBlockSize()
-{
-	return tetrominoBlockSize;
-}
 
 inline bool Tetromino::GetIsAtTop()
 {

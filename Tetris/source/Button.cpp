@@ -33,8 +33,13 @@ void Button::FillTexture()
 
 void Button::FillTextureRects(Position correction)
 {
-	dstRect.w = 512;
-	dstRect.h = 128;
+	//dstRect.w = 512;
+	//dstRect.h = 128;
+	dstRect.w = GLOBAL_buttonWidth;
+	dstRect.h = GLOBAL_buttonHeight;
+
+	
+
 	dstRect.x = SCREEN_WIDTH / 2 + correction.x - dstRect.w / 2;
 	dstRect.y = SCREEN_HEIGHT / 2 + correction.y - dstRect.h / 2;
 

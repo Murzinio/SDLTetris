@@ -81,8 +81,8 @@ bool InputHandler::IsMouseOverButton(std::shared_ptr<Button>  button)
 {
 	SDL_Rect buttonRect = button->GetScreenRect();
 	if (
-		(mousePosition.x > buttonRect.x && mousePosition.x < buttonRect.x + BUTTON_WIDTH)
-		&& (mousePosition.y > buttonRect.y && mousePosition.y < buttonRect.y + BUTTON_HEIGHT)
+		(mousePosition.x > buttonRect.x && mousePosition.x < buttonRect.x + GLOBAL_buttonWidth)
+		&& (mousePosition.y > buttonRect.y && mousePosition.y < buttonRect.y + GLOBAL_buttonHeight)
 		)
 		return true;
 

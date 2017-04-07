@@ -135,6 +135,7 @@
     <ClCompile Include="source\Tetromino.cpp" />
     <ClCompile Include="source\TetrominoBlock.cpp" />
     <ClCompile Include="source\Texture.cpp" />
+    <ClCompile Include="source\VEScaledDimensions.cpp" />
     <ClCompile Include="source\VisibleEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="headers\Tetromino.h" />
     <ClInclude Include="headers\TetrominoBlock.h" />
     <ClInclude Include="headers\Texture.h" />
+    <ClInclude Include="headers\VEScaledDimensions.h" />
     <ClInclude Include="headers\VisibleEntity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

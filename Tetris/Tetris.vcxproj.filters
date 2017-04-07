@@ -57,6 +57,9 @@
     <ClCompile Include="source\TetrominoBlock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\VEScaledDimensions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\enums.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="headers\Background.h">
       <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\VEScaledDimensions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

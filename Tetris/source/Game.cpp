@@ -141,7 +141,7 @@ void Game::DrawPlacedTetrominos()
 void Game::MoveTetrominoDown()
 {
 	SDL_Rect dstRect = currentTetromino->GetDstRect();
-	dstRect.y += currentTetromino->GetTetrominoBlockSize();
+	dstRect.y += GLOBAL_tetrominoBlockSize;
 
 	currentTetromino->SetDstRect(&dstRect);
 }
@@ -157,7 +157,7 @@ bool Game::IsPositionFree(ETetrominoMove move)
 			placedBlocksPositions.push_back(y);
 	}
 
-	int tetrominoBlockSize{ currentTetromino->GetTetrominoBlockSize() };
+	int tetrominoBlockSize{ GLOBAL_tetrominoBlockSize };
 
 	std::vector<Position> currentBlocksPositions{ currentTetromino->GetBlocksPositions() };
 	switch (move)

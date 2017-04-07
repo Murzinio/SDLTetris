@@ -1,7 +1,7 @@
 #pragma once
 
-const int SCREEN_HEIGHT = 1080;
-const int SCREEN_WIDTH = 1920;
+const int SCREEN_HEIGHT = 540;
+const int SCREEN_WIDTH = 960;
 
-const int BUTTON_HEIGHT = 128;
-const int BUTTON_WIDTH = 512;
+//const int BUTTON_HEIGHT = 128;
+//const int BUTTON_WIDTH = 512;

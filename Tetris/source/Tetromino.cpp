@@ -6,7 +6,6 @@ Tetromino::Tetromino(ETetrominoType t)
 {
 	type = t;
 	
-	tetrominoBlockSize = SCREEN_WIDTH / 60;
 	CreateBlocks();
 	srand(time(NULL));
 }
@@ -38,44 +37,44 @@ void Tetromino::Rotate()
 			switch (currentRotationVariant)
 			{
 			case 1:
-				blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
-				blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize);
+				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
 
-				blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -2);
-				blocks[2]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -2);
+				blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 
-				blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -3);
-				blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 3);
+				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -3);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 3);
 				break;
 			case 2:
-				blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
-				blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 
-				blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -2);
-				blocks[2]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -2);
+				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -2);
+				blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
 
-				blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -3);
-				blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -3);
+				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -3);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -3);
 				break;
 			case 3:
-				blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-				blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 
-				blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 2);
-				blocks[2]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -2);
+				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 2);
+				blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
 
-				blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 3);
-				blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -3);
+				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 3);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -3);
 				break;
 			case 0:
-				blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-				blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize);
+				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
 
-				blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 2);
-				blocks[2]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 2);
+				blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 
-				blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 3);
-				blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 3);
+				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 3);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 3);
 				break;
 			}
 			break;
@@ -83,34 +82,34 @@ void Tetromino::Rotate()
 			switch (currentRotationVariant)
 			{
 				case 1:
-					blocks[0]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
+					blocks[0]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
 
-					blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+					blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 
-					blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
+					blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
 					break;
 				case 2:
-					blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+					blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 					break;
 				case 3:
-					blocks[0]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[0]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize);
+					blocks[0]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[0]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
 					break;
 				case 0:
-					blocks[0]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
-					blocks[0]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+					blocks[0]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+					blocks[0]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 					
-					blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize);
+					blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
 
-					blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
+					blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
 
-					blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
-					blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize);
+					blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+					blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
 
 					for (auto & x : blocks)
-						x->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
+						x->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
 					break;
 			}
 			break;
@@ -118,45 +117,45 @@ void Tetromino::Rotate()
 			switch (currentRotationVariant)
 			{
 			case 1:
-				blocks[0]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 2);
-				blocks[0]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -2);
+				blocks[0]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 2);
+				blocks[0]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
 
-				blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-				blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 
-				blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
-				blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 				break;
 			case 2:
-				blocks[0]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 2);
-				blocks[0]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+				blocks[0]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 2);
+				blocks[0]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 
-				blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-				blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize);
+				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
 
-				blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 1);
-				blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 1);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 				break;
 			case 3:
-				blocks[0]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
-				blocks[0]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -2);
+				blocks[0]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+				blocks[0]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
 
-				blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
-				blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -2);
+				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
 				break;
 			case 0:
-				blocks[0]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -2);
-				blocks[0]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+				blocks[0]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -2);
+				blocks[0]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 
-				blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 
-				blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
+				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
 
-				blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-				blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 
 				for (auto & x : blocks)
-					x->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
+					x->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
 				break;
 				break;
 			}
@@ -165,44 +164,44 @@ void Tetromino::Rotate()
 			switch (currentRotationVariant)
 			{
 				case 1:
-					blocks[0]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[0]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+					blocks[0]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[0]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 
-					blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+					blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 
-					blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 2);
+					blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 2);
 					break;
 				case 2:
-					blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[2]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -1);
+					blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 
-					blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -3);
+					blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -3);
 
 					for (auto & x : blocks)
-						x->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
+						x->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
 					break;
 				case 3:
-					blocks[0]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 3);
+					blocks[0]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 3);
 
-					blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -2);
+					blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
 
 					for (auto & x : blocks)
-						x->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
+						x->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
 					break;
 				case 0:
-					blocks[1]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 2);
-					blocks[1]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+					blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 2);
+					blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 
-					blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * 3);
+					blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 3);
 
-					blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+					blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 
 					for (auto & x : blocks)
-						x->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -2);
+						x->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -2);
 					break;
 			}
 			break;
@@ -211,17 +210,17 @@ void Tetromino::Rotate()
 			{
 				case 1:
 				case 3:
-					blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-					blocks[2]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -2);
+					blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+					blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
 
-					blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
+					blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
 					break;
 				case 2:
 				case 0:
-					blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
-					blocks[2]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+					blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+					blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 
-					blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
+					blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
 					break;
 			}
 			break;
@@ -230,17 +229,17 @@ void Tetromino::Rotate()
 			{
 			case 1:
 			case 3:
-				blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
+				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
 
-				blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
-				blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * -2);
+				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
 				break;
 			case 2:
 			case 0:
-				blocks[2]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
+				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
 
-				blocks[3]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
-				blocks[3]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize * 2);
+				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
 				break;
 			}
 			break;
@@ -250,7 +249,7 @@ void Tetromino::Rotate()
 
 void Tetromino::CreateBlocks()
 {
-	SDL_Rect dstRect{ 0, 0, tetrominoBlockSize , tetrominoBlockSize };
+	SDL_Rect dstRect{ 0, 0, GLOBAL_tetrominoBlockSize , GLOBAL_tetrominoBlockSize };
 
 	int colorsCount{ (int)ETetrominoBlockColor::COUNT };
 	int random{ rand() % colorsCount };
@@ -260,83 +259,83 @@ void Tetromino::CreateBlocks()
 		case ETetrominoType::I:
 			for (int i = 0; i < 4; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			break;
 		case ETetrominoType::O:
 			for (int i = 0; i < 2; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			for (int i = 0; i < 2; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = 2 * tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = 2 * GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			break;
 		case ETetrominoType::T:
 			for (int i = 0; i < 3; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
-			dstRect.x = gameBoardWidth / 2;
-			dstRect.y = 2 * tetrominoBlockSize;
+			dstRect.x = GLOBAL_gameBoardWidth / 2;
+			dstRect.y = 2 * GLOBAL_tetrominoBlockSize;
 			blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			break;
 		case ETetrominoType::J:
 			for (int i = 0; i < 3; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
-			dstRect.x = gameBoardWidth / 2 + tetrominoBlockSize;
-			dstRect.y = 2 * tetrominoBlockSize;
+			dstRect.x = GLOBAL_gameBoardWidth / 2 + GLOBAL_tetrominoBlockSize;
+			dstRect.y = 2 * GLOBAL_tetrominoBlockSize;
 			blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			break;
 		case ETetrominoType::L:
 			for (int i = 0; i < 3; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
-			dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize;
-			dstRect.y = 2 * tetrominoBlockSize;
+			dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize;
+			dstRect.y = 2 * GLOBAL_tetrominoBlockSize;
 			blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			break;
 		case ETetrominoType::S:
 			for (int i = 1; i < 3; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			for (int i = 0; i < 2; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = 2 * tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = 2 * GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			break;
 		case ETetrominoType::Z:
 			for (int i = 0; i < 2; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			for (int i = 1; i < 3; ++i)
 			{
-				dstRect.x = gameBoardWidth / 2 - tetrominoBlockSize + (i * tetrominoBlockSize);
-				dstRect.y = 2 * tetrominoBlockSize;
+				dstRect.x = GLOBAL_gameBoardWidth / 2 - GLOBAL_tetrominoBlockSize + (i * GLOBAL_tetrominoBlockSize);
+				dstRect.y = 2 * GLOBAL_tetrominoBlockSize;
 				blocks.push_back(std::make_shared<TetrominoBlock>(ETetrominoBlockColor(random), dstRect));
 			}
 			break;
@@ -365,7 +364,7 @@ bool Tetromino::HasReachedBottom()
 
 	for (auto & x : positions)
 	{
-		if (x.y + 2 * tetrominoBlockSize >= gameBoardHeight)
+		if (x.y + 2 * GLOBAL_tetrominoBlockSize >= GLOBAL_gameBoardHeight)
 			return true;
 	}
 	return false;
@@ -379,12 +378,12 @@ bool Tetromino::HasReachedBoundary(ETetrominoMove move)
 	{	
 		case ETetrominoMove::RIGHT:
 			for (auto & x : positions)
-				if (x.x + 2 * tetrominoBlockSize >= gameBoardWidth)
+				if (x.x + 2 * GLOBAL_tetrominoBlockSize >= GLOBAL_gameBoardWidth)
 					return true;
 			break;
 		case ETetrominoMove::LEFT:
 			for (auto & x : positions)
-				if (x.x - tetrominoBlockSize < tetrominoBlockSize)
+				if (x.x - GLOBAL_tetrominoBlockSize < GLOBAL_tetrominoBlockSize)
 					return true;
 			break;
 	}
@@ -402,15 +401,15 @@ void Tetromino::Move(ETetrominoMove move)
 		if (isAtTop)
 			isAtTop = false;
 		for (int i = 0; i < 4; ++i)
-			blocks[i]->ChangePosition(EPositionAxis::Y, tetrominoBlockSize);
+			blocks[i]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
 		break;
 	case ETetrominoMove::LEFT:
 		for (int i = 0; i < 4; ++i)
-			blocks[i]->ChangePosition(EPositionAxis::X, tetrominoBlockSize * -1);
+			blocks[i]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
 		break;
 	case ETetrominoMove::RIGHT:
 		for (int i = 0; i < 4; ++i)
-			blocks[i]->ChangePosition(EPositionAxis::X, tetrominoBlockSize);
+			blocks[i]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
 		break;
 	}
 

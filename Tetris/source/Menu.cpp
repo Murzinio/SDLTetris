@@ -80,8 +80,8 @@ void Menu::CreateButtons()
 	else
 		buttons.push_back(NewButton(EButtonType::RESUME_BUTTON, { 0, 0 }));
 
-	buttons.push_back(NewButton(EButtonType::OPTIONS_BUTTON, { 0, BUTTON_HEIGHT }));
-	buttons.push_back(NewButton(EButtonType::EXIT_BUTTON, { 0, BUTTON_HEIGHT * 2 }));
+	buttons.push_back(NewButton(EButtonType::OPTIONS_BUTTON, { 0, GLOBAL_buttonHeight }));
+	buttons.push_back(NewButton(EButtonType::EXIT_BUTTON, { 0, GLOBAL_buttonHeight * 2 }));
 }
 
 bool Menu::IsAnyButtonHighlited()

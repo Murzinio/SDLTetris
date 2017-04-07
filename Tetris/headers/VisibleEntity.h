@@ -10,6 +10,10 @@
 
 #include "structs.h"
 
+#include "VEScaledDimensions.h"
+
+using namespace VEScaledDimensions;
+
 class Renderer;
 class Texture;
 
@@ -19,16 +23,12 @@ struct Position;
 class VisibleEntity
 {
 private:
-	
 	Position position{ 0, 0 };
 protected:
 	static Logger logger;
 	static Renderer* renderer;
 	static Textures textures;
 
-	static int gameBoardWidth;
-	static int gameBoardHeight;
-	static int tetrominoBlockSize;
 public:
 	VisibleEntity();
 	virtual ~VisibleEntity() = 0;

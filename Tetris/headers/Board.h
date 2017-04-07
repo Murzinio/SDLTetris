@@ -8,7 +8,7 @@ class Board :
 {
 private:
 	SDL_Texture* texture = textures.GameBoard.GetSDLTexture();
-	SDL_Rect dstRect{0, 0, SCREEN_WIDTH - SCREEN_WIDTH / 5, SCREEN_HEIGHT - SCREEN_HEIGHT / 10};
+	SDL_Rect dstRect{0, 0, GLOBAL_gameBoardWidth, GLOBAL_gameBoardHeight};
 
 public:
 	Board();

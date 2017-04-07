@@ -4,8 +4,6 @@
 
 Board::Board()
 {
-	gameBoardWidth = dstRect.w;
-	gameBoardHeight = dstRect.h;
 }
 
 
