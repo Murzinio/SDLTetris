@@ -8,8 +8,6 @@ Menu::Menu(EMenuType menuType)
 
 Menu::~Menu()
 {
-	for (auto & x : buttons)
-		delete x;
 }
 
 void Menu::StartLoop()
@@ -67,9 +65,11 @@ void Menu::StartLoop()
 
 
 
-Button* Menu::NewButton(EButtonType bt, Position correction)
+std::shared_ptr<Button> Menu::NewButton(EButtonType bt, Position correction)
 {
-	Button* button = new Button(bt, correction);
+	//Button* button = new Button(bt, correction);
+	std::shared_ptr<Button> button = std::make_shared<Button>(bt, correction);
+
 	return button;
 }
 

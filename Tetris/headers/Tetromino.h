@@ -13,7 +13,7 @@ class Tetromino
 	: public VisibleEntity
 {
 private:
-	std::vector<TetrominoBlock*> blocks;
+	std::vector<std::shared_ptr<TetrominoBlock>> blocks;
 
 	ETetrominoType type;
 
@@ -22,7 +22,7 @@ private:
 	SDL_Rect dstRect;
 
 	bool isAtTop{ true };
-	int currentRotationVariant;
+	int currentRotationVariant{ 0 };
 	void CreateBlocks();
 
 public:

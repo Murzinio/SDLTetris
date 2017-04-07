@@ -29,9 +29,6 @@ Game::~Game()
 {
 	logger.Log("Exitting...");
 
-	for (auto & x : allTetrominos)
-		delete x;
-
 	SDL_Quit();
 }
 
@@ -121,7 +118,7 @@ bool Game::HandleMoves()
 	return true;
 }
 
-Tetromino* Game::CreateNewTetromino()
+std::shared_ptr<Tetromino> Game::CreateNewTetromino()
 {
 	int typesCount{ (int)ETetrominoType::COUNT };
 	int random{ rand() % typesCount + 0 };
@@ -130,7 +127,7 @@ Tetromino* Game::CreateNewTetromino()
 		random = rand() % typesCount + 0;
 	}
 	previousRandom = random;
-	return new Tetromino((ETetrominoType)random);
+	return std::make_shared<Tetromino>((ETetrominoType)random);
 	//return new Tetromino(ETetrominoType::J); 
 	//for tests
 }

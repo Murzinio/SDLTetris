@@ -62,7 +62,7 @@ void InputHandler::HandleEvents()
 	}
 }
 
-void InputHandler::HandleButtonEvents(Button* button)
+void InputHandler::HandleButtonEvents(std::shared_ptr<Button> button)
 {
 	currentButton = button;
 }
@@ -77,7 +77,7 @@ bool InputHandler::GetMenuRequested()
 	return menuRequested;
 }
 
-bool InputHandler::IsMouseOverButton(Button* button)
+bool InputHandler::IsMouseOverButton(std::shared_ptr<Button>  button)
 {
 	SDL_Rect buttonRect = button->GetScreenRect();
 	if (
@@ -89,7 +89,7 @@ bool InputHandler::IsMouseOverButton(Button* button)
 	return false;
 }
 
-bool InputHandler::IsButtonPressed(Button* button)
+bool InputHandler::IsButtonPressed(std::shared_ptr<Button> button)
 {
 	SDL_Rect buttonRect = button->GetScreenRect();
 	if (!IsMouseOverButton(button))

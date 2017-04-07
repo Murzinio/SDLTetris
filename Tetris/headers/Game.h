@@ -46,9 +46,9 @@ private:
 	std::chrono::high_resolution_clock::time_point previous_update{ std::chrono::high_resolution_clock::now() };
 	int GetTimeFromLastUpdate();
 
-	std::vector<Tetromino*> allTetrominos;
-	std::vector<Tetromino*> placedTetrominos;
-	Tetromino* currentTetromino;
+	std::vector<std::shared_ptr<Tetromino>> allTetrominos;
+	std::vector<std::shared_ptr<Tetromino>> placedTetrominos;
+	std::shared_ptr<Tetromino> currentTetromino;
 
 	int framesCounter{ 0 };
 	int counter;
@@ -59,7 +59,7 @@ private:
 	void MoveTetrominoDown();
 	void ResumeGameplayLoop();
 
-	Tetromino* CreateNewTetromino();
+	std::shared_ptr<Tetromino> CreateNewTetromino();
 	void DrawPlacedTetrominos();
 	bool IsPositionFree(ETetrominoMove move);
 	

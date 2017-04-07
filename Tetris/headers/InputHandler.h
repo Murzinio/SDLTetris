@@ -21,7 +21,7 @@ class InputHandler
 private:
 	SDL_Event event;
 
-	Button* currentButton;
+	std::shared_ptr<Button> currentButton;
 	SDL_Rect buttonRect;
 	MousePosition mousePosition;
 	Logger logger;
@@ -44,9 +44,9 @@ public:
 	ETetrominoMove GetMove();
 
 	void HandleEvents();
-	bool IsButtonPressed(Button* button);
-	void HandleButtonEvents(Button* button);
-	bool IsMouseOverButton(Button* button);
+	bool IsButtonPressed(std::shared_ptr<Button> button);
+	void HandleButtonEvents(std::shared_ptr<Button> button);
+	bool IsMouseOverButton(std::shared_ptr<Button> button);
 	void ClearButtonMouseChecks();
 	EButtonType GetButtonToHighlight();
 };

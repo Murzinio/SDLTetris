@@ -98,11 +98,11 @@
     <ClInclude Include="headers\Board.h">
       <Filter>Header Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Background.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\TetrominoBlock.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Background.h">
+      <Filter>Header Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

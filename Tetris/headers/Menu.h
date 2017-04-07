@@ -6,8 +6,6 @@
 #include <string>
 #include "Button.h"
 
-#include <memory>
-
 enum class EButtonType;
 enum class EScreenPosition;
 
@@ -24,13 +22,13 @@ private:
 	SDL_Rect dstRect{0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	int buttonCount{ 0 };
 	bool exit{ false };
-	std::vector<Button*> buttons;
+	std::vector<std::shared_ptr<Button>> buttons;
 
 	bool buttonPressHandled{ false };
 public:
 	Menu(EMenuType menuType);
 	~Menu();
-	Button* NewButton(EButtonType bt, Position correction);
+	std::shared_ptr<Button> NewButton(EButtonType bt, Position correction);
 	void CreateButtons();
 	bool IsAnyButtonHighlited();
 	bool GetExit();
