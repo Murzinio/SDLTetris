@@ -22,7 +22,7 @@ private:
 	SDL_Rect dstRect;
 
 	bool isAtTop{ true };
-
+	int currentRotationVariant;
 	void CreateBlocks();
 
 public:
@@ -39,8 +39,9 @@ public:
 	
 	bool GetIsAtTop();
 	bool HasReachedBottom();
-	bool HasReachedBoundary(EBoardBoundary boundary);
+	bool HasReachedBoundary(ETetrominoMove move);
 	void Move(ETetrominoMove move);
+	void Rotate();
 
 	std::vector<Position> GetBlocksPositions();
 };

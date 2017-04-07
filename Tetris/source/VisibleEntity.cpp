@@ -64,6 +64,9 @@ bool VisibleEntity::LoadTextures()
 	textures.TetrominoBlock_Turquoise.LoadTexture("tetrominoBlocks\\Turquoise.png");
 	textures.TetrominoBlock_Purple.LoadTexture("tetrominoBlocks\\Purple.png");
 	textures.TetrominoBlock_Blue.LoadTexture("tetrominoBlocks\\Blue.png");
+	textures.TetrominoBlock_Orange.LoadTexture("tetrominoBlocks\\Orange.png");
+	textures.TetrominoBlock_Green.LoadTexture("tetrominoBlocks\\Green.png");
+	textures.TetrominoBlock_Red.LoadTexture("tetrominoBlocks\\Red.png");
 	
 	/*Texture Tetromino_I;
 	Texture Tetromino_O;

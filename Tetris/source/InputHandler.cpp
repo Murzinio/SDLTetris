@@ -12,8 +12,6 @@ InputHandler::~InputHandler()
 
 void InputHandler::HandleEvents()
 {
-	int x, y;
-
 	isMouseDown = false;
 	menuRequested = false;
 	moveRequested = false;
@@ -54,6 +52,10 @@ void InputHandler::HandleEvents()
 			case SDLK_DOWN:
 				moveRequested = true;
 				move = ETetrominoMove::DOWN;
+				break;
+			case SDLK_UP:
+				moveRequested = true;
+				move = ETetrominoMove::ROTATE;
 				break;
 			}
 		}

@@ -15,15 +15,6 @@ enum class EMenuType
 	RESUME_MENU
 };
 
-enum class EScreenPosition
-{
-	POSITION_CENTER,
-	POSITION_CENTER_LEFT,
-	POSITION_CENTER_RIGHT,
-	POSITION_DEFAULT,
-	TETROMINO
-};
-
 enum class ETetrominoType
 {
 	I,
@@ -31,6 +22,8 @@ enum class ETetrominoType
 	T,
 	J,
 	L,
+	S,
+	Z,
 	COUNT
 };
 
@@ -38,7 +31,8 @@ enum class ETetrominoMove
 {
 	LEFT,
 	RIGHT,
-	DOWN
+	DOWN,
+	ROTATE
 };
 
 enum class EBackground
@@ -59,12 +53,14 @@ enum class ETetrominoBlockColor
 	TURQUOISE,
 	YELLOW,
 	PURPLE,
-	BLUE
+	BLUE,
+	ORANGE,
+	GREEN,
+	RED
 };
 
 enum class EPositionAxis
 {
 	X,
 	Y,
-	Z,
 };

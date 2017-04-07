@@ -79,7 +79,10 @@ void Game::StartGameplayLoop()
 		if (GetTimeFromLastUpdate() >= gameplayInterval)
 		{
 			if (!currentTetromino->HasReachedBottom() && IsPositionFree(ETetrominoMove::DOWN))
+			{
 				currentTetromino->Move(ETetrominoMove::DOWN);
+			}
+				
 			else if (currentTetromino->GetIsAtTop() && !IsPositionFree(ETetrominoMove::DOWN))
 				gameOver = true;
 			else
@@ -112,7 +115,9 @@ bool Game::HandleMoves()
 
 	if (move == ETetrominoMove::DOWN && (currentTetromino->HasReachedBottom() || !IsPositionFree(move)))
 		return false;
-	else if (IsPositionFree(move))
+	else if (move == ETetrominoMove::ROTATE)
+		currentTetromino->Rotate();
+	else if (IsPositionFree(move) && !currentTetromino->HasReachedBoundary(move))
 		currentTetromino->Move(move);
 	
 	return true;
@@ -121,9 +126,15 @@ bool Game::HandleMoves()
 Tetromino* Game::CreateNewTetromino()
 {
 	int typesCount{ (int)ETetrominoType::COUNT };
-	--typesCount;
 	int random{ rand() % typesCount + 0 };
+	while (random == previousRandom)
+	{
+		random = rand() % typesCount + 0;
+	}
+	previousRandom = random;
 	return new Tetromino((ETetrominoType)random);
+	//return new Tetromino(ETetrominoType::J); 
+	//for tests
 }
 
 void Game::DrawPlacedTetrominos()

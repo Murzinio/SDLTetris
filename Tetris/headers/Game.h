@@ -54,6 +54,7 @@ private:
 	int counter;
 	
 	void StartGameplayLoop();
+	int previousRandom{ 0 };
 	bool HandleMoves();
 	void MoveTetrominoDown();
 	void ResumeGameplayLoop();

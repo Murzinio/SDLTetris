@@ -50,7 +50,10 @@ struct Textures
 	Texture TetrominoBlock_Turquoise;
 	Texture TetrominoBlock_Yellow;
 	Texture TetrominoBlock_Purple;
-	Texture TetrominoBlock_Blue;
+	Texture TetrominoBlock_Blue; 
+	Texture TetrominoBlock_Orange;
+	Texture TetrominoBlock_Green;
+	Texture TetrominoBlock_Red;
 
 	Texture Tetromino_J;
 	Texture Tetromino_L;
