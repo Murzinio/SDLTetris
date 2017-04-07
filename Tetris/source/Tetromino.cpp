@@ -1,6 +1,9 @@
 #include "..\headers\Tetromino.h"
 
-SDL_Texture* Tetromino::textureO;
+Tetromino::Tetromino()
+{
+	srand(time(NULL));
+}
 
 Tetromino::Tetromino(ETetrominoType t)
 {

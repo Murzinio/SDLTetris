@@ -131,6 +131,7 @@
     <ClCompile Include="source\InputHandler.cpp" />
     <ClCompile Include="source\Logger.cpp" />
     <ClCompile Include="source\Menu.cpp" />
+    <ClCompile Include="source\PhantomTetromino.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\Tetromino.cpp" />
     <ClCompile Include="source\TetrominoBlock.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="headers\InputHandler.h" />
     <ClInclude Include="headers\Logger.h" />
     <ClInclude Include="headers\Menu.h" />
+    <ClInclude Include="headers\PhantomTetromino.h" />
     <ClInclude Include="headers\Renderer.h" />
     <ClInclude Include="headers\structs.h" />
     <ClInclude Include="headers\Tetromino.h" />

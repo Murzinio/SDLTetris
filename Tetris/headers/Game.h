@@ -8,6 +8,7 @@
 
 #include "Menu.h"
 #include "Tetromino.h"
+#include "PhantomTetromino.h"
 #include "Board.h"
 
 
@@ -19,6 +20,7 @@ class Logger;
 class InputHandler;
 class Menu;
 class Tetromino;
+class PhantomTetromino;
 class GameplayManager;
 
 class Game
@@ -49,6 +51,8 @@ private:
 	std::vector<std::shared_ptr<Tetromino>> allTetrominos;
 	std::vector<std::shared_ptr<Tetromino>> placedTetrominos;
 	std::shared_ptr<Tetromino> currentTetromino;
+
+	std::unique_ptr<PhantomTetromino> phantom;
 
 	int framesCounter{ 0 };
 	int counter;

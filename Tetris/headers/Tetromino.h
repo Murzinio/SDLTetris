@@ -15,12 +15,10 @@ struct TetrominoPosition;
 class Tetromino 
 	: public VisibleEntity
 {
-private:
+protected:
 	std::vector<std::shared_ptr<TetrominoBlock>> blocks;
 
 	ETetrominoType type;
-
-	static SDL_Texture* textureO;
 
 	SDL_Rect dstRect;
 
@@ -30,6 +28,7 @@ private:
 
 public:
 	
+	Tetromino();
 	Tetromino(ETetrominoType t);
 	~Tetromino();
 
@@ -45,9 +44,15 @@ public:
 	void Rotate();
 
 	std::vector<Position> GetBlocksPositions();
+	ETetrominoType GetType();
 };
 
 inline bool Tetromino::GetIsAtTop()
 {
 	return isAtTop;
+}
+
+inline ETetrominoType Tetromino::GetType()
+{
+	return type;
 }

@@ -49,6 +49,8 @@ void Game::StartGameplayLoop(bool resume)
 	{
 		currentTetromino = CreateNewTetromino();
 		allTetrominos.push_back(currentTetromino);
+
+		phantom = std::make_unique<PhantomTetromino>(currentTetromino->GetType());
 	}
 
 	while (!menuRequested && !gameOver)
@@ -57,7 +59,7 @@ void Game::StartGameplayLoop(bool resume)
 		inputHandler.HandleEvents();
 		renderer.Clear();
 
-		texture = textures.background_Sunset.GetSDLTexture();
+		texture = textures.background_Water.GetSDLTexture();
 		renderer.AddToQueue(texture, NULL, NULL);
 
 		gameBoard.Draw();
@@ -72,6 +74,7 @@ void Game::StartGameplayLoop(bool resume)
 					tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
 					placedTetrominos.push_back(currentTetromino);
 					currentTetromino = CreateNewTetromino();
+					phantom = std::make_unique<PhantomTetromino>(currentTetromino->GetType());
 				}
 			}
 		if (GetTimeFromLastUpdate() >= gameplayInterval)
@@ -88,6 +91,7 @@ void Game::StartGameplayLoop(bool resume)
 				tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
 				placedTetrominos.push_back(currentTetromino);
 				currentTetromino = CreateNewTetromino();
+				phantom = std::make_unique<PhantomTetromino>(currentTetromino->GetType());
 			}
 
 			previous_update = std::chrono::high_resolution_clock::now();
@@ -95,7 +99,13 @@ void Game::StartGameplayLoop(bool resume)
 
 		DrawPlacedTetrominos();
 
+		
+		while (!phantom->HasReachedBottom())
+			phantom->Move(ETetrominoMove::DOWN);
+
+		phantom->Draw();
 		currentTetromino->Draw();
+
 		renderer.Render();
 	}
 	if (menuRequested)
@@ -115,12 +125,18 @@ bool Game::HandleMoves()
 	else if (move == ETetrominoMove::ROTATE)
 	{
 		currentTetromino->Rotate();
+		phantom->Rotate();
 		while (!IsPositionFree())
 			currentTetromino->Move(ETetrominoMove::UP);
 			
 	}	
 	else if (IsPositionFree(move) && !currentTetromino->HasReachedBoundary(move))
+	{
 		currentTetromino->Move(move);
+		if (move != ETetrominoMove::DOWN)
+			phantom->Move(move);
+	}
+		
 	
 	return true;
 }
@@ -135,7 +151,7 @@ std::shared_ptr<Tetromino> Game::CreateNewTetromino()
 	}
 	previousRandom = random;
 	return std::make_shared<Tetromino>((ETetrominoType)random);
-	//return new Tetromino(ETetrominoType::J); 
+	//return std::make_shared<Tetromino>(ETetrominoType::I);
 	//for tests
 }
 

@@ -41,6 +41,7 @@ struct Textures
 	Texture TetrominoBlock_Orange;
 	Texture TetrominoBlock_Green;
 	Texture TetrominoBlock_Red;
+	Texture TetrominoBlock_Phantom;
 
 	Texture Tetromino_J;
 	Texture Tetromino_L;

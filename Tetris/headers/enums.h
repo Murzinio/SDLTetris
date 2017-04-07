@@ -46,7 +46,8 @@ enum class ETetrominoBlockColor
 	ORANGE,
 	GREEN,
 	RED,
-	COUNT
+	COUNT,
+	PHANTOM
 };
 
 enum class ETetrominoType
