@@ -20,6 +20,7 @@ enum class ETetrominoMove
 	LEFT,
 	RIGHT,
 	DOWN,
+	UP, // to avoid collisions while rotating
 	ROTATE
 };
 

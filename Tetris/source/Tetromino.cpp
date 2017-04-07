@@ -244,6 +244,16 @@ void Tetromino::Rotate()
 			}
 			break;
 	}
+	if (type != ETetrominoType::O)
+	{
+		for (auto & x : blocks)
+			if (HasReachedBoundary(ETetrominoMove::LEFT))
+				for (auto & y : blocks)
+					y->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+			else if (HasReachedBoundary(ETetrominoMove::RIGHT))
+				for (auto & y : blocks)
+					y->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+	}
 	
 }
 
@@ -410,6 +420,10 @@ void Tetromino::Move(ETetrominoMove move)
 	case ETetrominoMove::RIGHT:
 		for (int i = 0; i < 4; ++i)
 			blocks[i]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+		break;
+	case ETetrominoMove::UP:
+		for (int i = 0; i < 4; ++i)
+			blocks[i]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 		break;
 	}
 

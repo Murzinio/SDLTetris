@@ -61,6 +61,7 @@ private:
 
 	std::shared_ptr<Tetromino> CreateNewTetromino();
 	void DrawPlacedTetrominos();
+	bool IsPositionFree();
 	bool IsPositionFree(ETetrominoMove move);
 	
 

@@ -111,7 +111,12 @@ bool Game::HandleMoves()
 	if (move == ETetrominoMove::DOWN && (currentTetromino->HasReachedBottom() || !IsPositionFree(move)))
 		return false;
 	else if (move == ETetrominoMove::ROTATE)
+	{
 		currentTetromino->Rotate();
+		while (!IsPositionFree())
+			currentTetromino->Move(ETetrominoMove::UP);
+			
+	}	
 	else if (IsPositionFree(move) && !currentTetromino->HasReachedBoundary(move))
 		currentTetromino->Move(move);
 	
@@ -144,6 +149,28 @@ void Game::MoveTetrominoDown()
 	dstRect.y += GLOBAL_tetrominoBlockSize;
 
 	currentTetromino->SetDstRect(&dstRect);
+}
+
+bool Game::IsPositionFree()
+{
+	std::vector<Position> placedBlocksPositions;
+
+	for (auto & x : placedTetrominos)
+	{
+		std::vector<Position> blocksPositions{ x->GetBlocksPositions() };
+		for (auto & y : blocksPositions)
+			placedBlocksPositions.push_back(y);
+	}
+
+	int tetrominoBlockSize{ GLOBAL_tetrominoBlockSize };
+
+	std::vector<Position> currentBlocksPositions{ currentTetromino->GetBlocksPositions() };
+		for (auto & currentPos : currentBlocksPositions)
+			for (auto & placedPos : placedBlocksPositions)
+				if (currentPos.x == placedPos.x && currentPos.y == placedPos.y)
+					return false;
+
+	return true;
 }
 
 bool Game::IsPositionFree(ETetrominoMove move)
@@ -181,7 +208,6 @@ bool Game::IsPositionFree(ETetrominoMove move)
 						return false;
 			break;
 	}
-	
 
 	return true;
 }
