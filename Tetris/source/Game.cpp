@@ -41,7 +41,8 @@ void Game::StartGameplayLoop(bool resume)
 {
 	previous_update = std::chrono::high_resolution_clock::now();
 
-	SDL_Texture* texture{ NULL };
+	SDL_Texture* backgroundTexture{ NULL };
+	backgroundTexture = textures.background_Water.GetSDLTexture();
 	bool menuRequested{ false };
 	bool gameOver{ false };
 
@@ -50,7 +51,7 @@ void Game::StartGameplayLoop(bool resume)
 		currentTetromino = CreateNewTetromino();
 		allTetrominos.push_back(currentTetromino);
 
-		phantom = std::make_unique<PhantomTetromino>(currentTetromino->GetType());
+		phantom = std::make_shared<PhantomTetromino>(currentTetromino->GetType());
 	}
 
 	while (!menuRequested && !gameOver)
@@ -59,8 +60,7 @@ void Game::StartGameplayLoop(bool resume)
 		inputHandler.HandleEvents();
 		renderer.Clear();
 
-		texture = textures.background_Water.GetSDLTexture();
-		renderer.AddToQueue(texture, NULL, NULL);
+		renderer.AddToQueue(backgroundTexture, NULL, NULL);
 
 		gameBoard.Draw();
 
@@ -75,7 +75,17 @@ void Game::StartGameplayLoop(bool resume)
 					tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
 					placedTetrominos.push_back(currentTetromino);
 					currentTetromino = CreateNewTetromino();
-					phantom = std::make_unique<PhantomTetromino>(currentTetromino->GetType());
+					if (IsLastRowFilled())
+					{
+						DestroyLastRowBlocks();
+						MovePlacedTetrominosDown();
+						if (IsLastRowFilled())
+						{
+							DestroyLastRowBlocks();
+							MovePlacedTetrominosDown();
+						}
+					}
+					phantom = std::make_shared<PhantomTetromino>(currentTetromino->GetType());
 				}
 			}
 		}
@@ -87,7 +97,18 @@ void Game::StartGameplayLoop(bool resume)
 			tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
 			placedTetrominos.push_back(currentTetromino);
 			currentTetromino = CreateNewTetromino();
-			phantom = std::make_unique<PhantomTetromino>(currentTetromino->GetType());
+			if (IsLastRowFilled())
+			{
+				DestroyLastRowBlocks();
+				MovePlacedTetrominosDown();
+				if (IsLastRowFilled())
+				{
+					DestroyLastRowBlocks();
+					MovePlacedTetrominosDown();
+				}
+					
+			}
+			phantom = std::make_shared<PhantomTetromino>(currentTetromino->GetType());
 		}
 
 		if (GetTimeFromLastUpdate() >= gameplayInterval)
@@ -101,10 +122,21 @@ void Game::StartGameplayLoop(bool resume)
 				gameOver = true;
 			else
 			{
+				
 				tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
 				placedTetrominos.push_back(currentTetromino);
 				currentTetromino = CreateNewTetromino();
-				phantom = std::make_unique<PhantomTetromino>(currentTetromino->GetType());
+				if (IsLastRowFilled())
+				{
+					DestroyLastRowBlocks();
+					MovePlacedTetrominosDown();
+					if (IsLastRowFilled())
+					{
+						DestroyLastRowBlocks();
+						MovePlacedTetrominosDown();
+					}
+				}
+				phantom = std::make_shared<PhantomTetromino>(currentTetromino->GetType());
 			}
 
 			previous_update = std::chrono::high_resolution_clock::now();
@@ -170,8 +202,6 @@ std::shared_ptr<Tetromino> Game::CreateNewTetromino()
 	}
 	previousRandom = random;
 	return std::make_shared<Tetromino>((ETetrominoType)random);
-	//return std::make_shared<Tetromino>(ETetrominoType::I);
-	//for tests
 }
 
 void Game::DrawPlacedTetrominos()
@@ -278,6 +308,49 @@ int Game::GetTimeFromLastUpdate()
 	return lastUpdateDelta;
 }
 
+bool Game::IsLastRowFilled()
+{
+	int lastRowBlocksCount{ 0 };
+
+	for (auto & tetromino : placedTetrominos)
+	{
+		std::vector<Position> blocksPositions{ tetromino->GetBlocksPositions() };
+		int blocksPositionsSize{ (int)blocksPositions.size() };
+		for (int i = 0; i < blocksPositionsSize; ++i)
+			if (blocksPositions[i].y + 2 * GLOBAL_tetrominoBlockSize >= GLOBAL_gameBoardHeight)
+				++lastRowBlocksCount;
+			else if (blocksPositions[i].y + 3 * GLOBAL_tetrominoBlockSize < GLOBAL_gameBoardHeight)
+				break; // no need to check all blocks if any of them is too far from bottom
+	}
+	if (lastRowBlocksCount == GLOBAL_gameBoardWidth / GLOBAL_tetrominoBlockSize - 2)
+		return true;
+
+	return false;
+}
+
+void Game::DestroyLastRowBlocks()
+{
+	for (auto & tetromino : placedTetrominos)
+	{
+		std::vector<Position> blocksPositions{ tetromino->GetBlocksPositions() };
+		int blocksPositionsSize{ (int)blocksPositions.size() };
+		for (int i = 0; i < blocksPositionsSize; ++i)
+			if (blocksPositions[i].y + 2 * GLOBAL_tetrominoBlockSize >= GLOBAL_gameBoardHeight)
+			{
+ 				tetromino->DestroyBlockById(i);
+				blocksPositions.erase(blocksPositions.begin() + i);
+				i--;
+			}			
+	}
+}
+
+void Game::MovePlacedTetrominosDown()
+{
+	for (auto & tetromino : placedTetrominos)
+	{
+		tetromino->Move(ETetrominoMove::DOWN);
+	}
+}
 
 /*
 --------- Public ---------

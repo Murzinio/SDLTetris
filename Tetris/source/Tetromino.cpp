@@ -24,7 +24,7 @@ Tetromino::~Tetromino()
 void Tetromino::Draw()
 {
 	for (auto x : blocks)
-		x->Draw();
+			x->Draw();
 }
 
 void Tetromino::Rotate()
@@ -413,20 +413,20 @@ void Tetromino::Move(ETetrominoMove move)
 	case ETetrominoMove::DOWN:
 		if (isAtTop)
 			isAtTop = false;
-		for (int i = 0; i < 4; ++i)
-			blocks[i]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
+		for (auto & block : blocks)
+			block->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
 		break;
 	case ETetrominoMove::LEFT:
-		for (int i = 0; i < 4; ++i)
-			blocks[i]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+		for (auto & block : blocks)
+			block->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
 		break;
 	case ETetrominoMove::RIGHT:
-		for (int i = 0; i < 4; ++i)
-			blocks[i]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
+		for (auto & block : blocks)
+			block->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
 		break;
 	case ETetrominoMove::UP:
-		for (int i = 0; i < 4; ++i)
-			blocks[i]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
+		for (auto & block : blocks)
+			block->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 		break;
 	}
 
@@ -439,7 +439,18 @@ std::vector<Position> Tetromino::GetBlocksPositions()
 	std::vector<Position> positions;
 
 	for (auto & x : blocks)
-		positions.push_back(x->GetPosition());
+		positions.push_back(x->GetPosition()); 
 
 	return positions;
+}
+
+std::shared_ptr<TetrominoBlock> Tetromino::GetBlockById(int id)
+{
+	return blocks[id];
+}
+
+void Tetromino::DestroyBlockById(int id)
+{
+ 	blocks[id].reset();
+   	blocks.erase(blocks.begin() + id);
 }

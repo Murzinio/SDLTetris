@@ -45,6 +45,9 @@ public:
 
 	std::vector<Position> GetBlocksPositions();
 	ETetrominoType GetType();
+
+	std::shared_ptr<TetrominoBlock> GetBlockById(int id);
+	void DestroyBlockById(int id);
 };
 
 inline bool Tetromino::GetIsAtTop()

@@ -52,7 +52,7 @@ private:
 	std::vector<std::shared_ptr<Tetromino>> placedTetrominos;
 	std::shared_ptr<Tetromino> currentTetromino;
 
-	std::unique_ptr<PhantomTetromino> phantom;
+	std::shared_ptr<PhantomTetromino> phantom;
 
 	int framesCounter{ 0 };
 	int counter;
@@ -68,7 +68,9 @@ private:
 	bool IsPositionFree();
 	bool IsPositionFree(ETetrominoMove move);
 	
-
+	bool IsLastRowFilled();
+	void DestroyLastRowBlocks();
+	void MovePlacedTetrominosDown();
 public:
 	Game();
 	~Game();
