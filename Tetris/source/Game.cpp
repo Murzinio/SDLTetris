@@ -100,8 +100,10 @@ void Game::StartGameplayLoop(bool resume)
 		DrawPlacedTetrominos();
 
 		
-		while (!phantom->HasReachedBottom())
+		while (!phantom->HasReachedBottom() && IsPositionFreePhantom())
 			phantom->Move(ETetrominoMove::DOWN);
+		while (!IsPositionFreePhantom())
+			phantom->Move(ETetrominoMove::UP);
 
 		phantom->Draw();
 		currentTetromino->Draw();
@@ -126,6 +128,8 @@ bool Game::HandleMoves()
 	{
 		currentTetromino->Rotate();
 		phantom->Rotate();
+		while (!IsPositionFreePhantom())
+			phantom->Move(ETetrominoMove::UP);
 		while (!IsPositionFree())
 			currentTetromino->Move(ETetrominoMove::UP);
 			
@@ -135,6 +139,8 @@ bool Game::HandleMoves()
 		currentTetromino->Move(move);
 		if (move != ETetrominoMove::DOWN)
 			phantom->Move(move);
+		while (!IsPositionFreePhantom())
+			phantom->Move(ETetrominoMove::UP);
 	}
 		
 	
@@ -187,6 +193,28 @@ bool Game::IsPositionFree()
 			for (auto & placedPos : placedBlocksPositions)
 				if (currentPos.x == placedPos.x && currentPos.y == placedPos.y)
 					return false;
+
+	return true;
+}
+
+bool Game::IsPositionFreePhantom()
+{
+	std::vector<Position> placedBlocksPositions;
+
+	for (auto & x : placedTetrominos)
+	{
+		std::vector<Position> blocksPositions{ x->GetBlocksPositions() };
+		for (auto & y : blocksPositions)
+			placedBlocksPositions.push_back(y);
+	}
+
+	int tetrominoBlockSize{ GLOBAL_tetrominoBlockSize };
+
+	std::vector<Position> currentBlocksPositions{ phantom->GetBlocksPositions() };
+	for (auto & currentPos : currentBlocksPositions)
+		for (auto & placedPos : placedBlocksPositions)
+			if (currentPos.x == placedPos.x && currentPos.y == placedPos.y)
+				return false;
 
 	return true;
 }
