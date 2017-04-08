@@ -63,8 +63,9 @@ void Game::StartGameplayLoop(bool resume)
 		renderer.AddToQueue(texture, NULL, NULL);
 
 		gameBoard.Draw();
-		
+
 		if (inputHandler.GetMoveRequested())
+		{
 			if (!HandleMoves())
 			{
 				if (currentTetromino->GetIsAtTop() && !IsPositionFree(ETetrominoMove::DOWN))
@@ -77,13 +78,25 @@ void Game::StartGameplayLoop(bool resume)
 					phantom = std::make_unique<PhantomTetromino>(currentTetromino->GetType());
 				}
 			}
+		}
+			
+		else if (inputHandler.GetFastPlacementRequested())
+		{
+			while (!currentTetromino->HasReachedBottom() && IsPositionFree(ETetrominoMove::DOWN))
+				currentTetromino->Move(ETetrominoMove::DOWN);
+			tetrominoPositions.push_back({ currentTetromino->GetDstRect().x, currentTetromino->GetDstRect().y });
+			placedTetrominos.push_back(currentTetromino);
+			currentTetromino = CreateNewTetromino();
+			phantom = std::make_unique<PhantomTetromino>(currentTetromino->GetType());
+		}
+
 		if (GetTimeFromLastUpdate() >= gameplayInterval)
 		{
 			if (!currentTetromino->HasReachedBottom() && IsPositionFree(ETetrominoMove::DOWN))
 			{
 				currentTetromino->Move(ETetrominoMove::DOWN);
 			}
-				
+
 			else if (currentTetromino->GetIsAtTop() && !IsPositionFree(ETetrominoMove::DOWN))
 				gameOver = true;
 			else
@@ -99,7 +112,7 @@ void Game::StartGameplayLoop(bool resume)
 
 		DrawPlacedTetrominos();
 
-		
+
 		while (!phantom->HasReachedBottom() && IsPositionFreePhantom())
 			phantom->Move(ETetrominoMove::DOWN);
 		while (!IsPositionFreePhantom())

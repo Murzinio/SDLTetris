@@ -33,6 +33,7 @@ private:
 	bool menuRequested{ false };
 
 	bool moveRequested{ false };
+	bool fastPlacementRequested{ false };
 	ETetrominoMove move;
 
 	bool isMouseDown{ false };
@@ -44,6 +45,7 @@ public:
 	bool GetMenuRequested();
 
 	bool GetMoveRequested();
+	bool GetFastPlacementRequested();
 	ETetrominoMove GetMove();
 
 	void HandleEvents();

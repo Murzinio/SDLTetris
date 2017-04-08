@@ -15,6 +15,7 @@ void InputHandler::HandleEvents()
 	isMouseDown = false;
 	menuRequested = false;
 	moveRequested = false;
+	fastPlacementRequested = false;
 
 	while (SDL_PollEvent(&event) != 0)
 	{
@@ -56,6 +57,9 @@ void InputHandler::HandleEvents()
 			case SDLK_UP:
 				moveRequested = true;
 				move = ETetrominoMove::ROTATE;
+				break;
+			case SDLK_SPACE:
+				fastPlacementRequested = true;
 				break;
 			}
 		}
@@ -106,6 +110,11 @@ void InputHandler::ClearButtonMouseChecks()
 {
 	isMouseOverButton = false;
 	buttonToHighlight = EButtonType::DEFAULT_BUTTON;
+}
+
+bool InputHandler::GetFastPlacementRequested()
+{
+	return fastPlacementRequested;
 }
 
 
