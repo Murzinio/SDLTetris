@@ -256,6 +256,9 @@ void Tetromino::Rotate()
 			else if (HasReachedBoundary(ETetrominoMove::RIGHT))
 				for (auto & y : blocks)
 					y->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
+			else if (HasReachedBottom())
+				for (auto & y : blocks)
+					y->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 	}
 	
 }

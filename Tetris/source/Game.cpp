@@ -258,6 +258,10 @@ bool Game::IsPositionFreePhantom()
 		for (auto & placedPos : placedBlocksPositions)
 			if (currentPos.x == placedPos.x && currentPos.y == placedPos.y)
 				return false;
+	for (auto & currentPos : currentBlocksPositions)
+		for (auto & placedPos : placedBlocksPositions)
+			if (currentPos.x == placedPos.x && currentPos.y > placedPos.y)
+				return false;
 
 	return true;
 }
