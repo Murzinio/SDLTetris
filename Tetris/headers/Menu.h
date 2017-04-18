@@ -23,7 +23,8 @@ private:
 	int buttonCount{ 0 };
 	bool exit{ false };
 	std::vector<std::shared_ptr<Button>> buttons;
-
+	bool optionsRequested{ false };
+	bool mainMenuRequested{ false };
 	bool buttonPressHandled{ false };
 public:
 	Menu(EMenuType menuType);
@@ -32,8 +33,19 @@ public:
 	void CreateButtons();
 	bool IsAnyButtonHighlited();
 	bool GetExit();
+	bool GetOptionsRequested();
+	bool GetMainMenuRequested();
 	void StartLoop();
 
 	void Draw();
 };
 
+inline bool Menu::GetOptionsRequested()
+{
+	return optionsRequested;
+}
+
+inline bool Menu::GetMainMenuRequested()
+{
+	return mainMenuRequested;
+}

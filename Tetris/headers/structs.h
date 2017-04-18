@@ -29,6 +29,11 @@ struct Textures
 	Texture button_options;
 	Texture button_exit;
 
+	/*Options menu buttons*/
+	Texture button_video;
+	Texture button_sound;
+	Texture button_gameplay;
+
 	/*Game board*/
 	Texture GameBoard;
 	Texture ScoreBoard;

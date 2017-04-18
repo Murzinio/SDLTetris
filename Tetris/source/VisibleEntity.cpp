@@ -52,6 +52,11 @@ bool VisibleEntity::LoadTextures()
 	textures.button_options.LoadTexture("mainMenu\\buttons\\options.png");
 	textures.button_exit.LoadTexture("mainMenu\\buttons\\exit.png");
 
+	/*Options menu buttons*/
+	textures.button_video.LoadTexture("optionsMenu\\buttons\\video.png");
+	textures.button_sound.LoadTexture("optionsMenu\\buttons\\sound.png");
+	textures.button_gameplay.LoadTexture("optionsMenu\\buttons\\gameplay.png");
+
 	/*Game board*/
 	textures.GameBoard.LoadTexture("gameBoard\\gameBoard.png");
 	textures.ScoreBoard.LoadTexture("gameBoard\\scoreBoard.png");

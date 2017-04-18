@@ -39,6 +39,7 @@ private:
 	Board gameBoard;
 	Menu mainMenu;
 	Menu resumeMenu;
+	Menu optionsMenu;
 
 	SDL_Rect dstRect{ 0, 0, 0, 0 };
 	

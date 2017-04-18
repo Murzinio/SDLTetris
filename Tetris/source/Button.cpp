@@ -28,6 +28,16 @@ void Button::FillTexture()
 		case EButtonType::EXIT_BUTTON:
 			texture = textures.button_exit.GetSDLTexture();
 			break;
+
+		case EButtonType::VIDEO_BUTTON:
+			texture = textures.button_video.GetSDLTexture();
+			break;
+		case EButtonType::SOUND_BUTTON:
+			texture = textures.button_sound.GetSDLTexture();
+			break;
+		case EButtonType::GAMEPLAY_BUTTON:
+			texture = textures.button_gameplay.GetSDLTexture();
+			break;
 	}
 }
 

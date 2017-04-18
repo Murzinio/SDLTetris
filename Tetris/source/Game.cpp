@@ -1,6 +1,6 @@
 #include "..\headers\Game.h"
 
-Game::Game() : dummyEntity(), mainMenu(EMenuType::MAIN_MENU), resumeMenu(EMenuType::RESUME_MENU)
+Game::Game() : dummyEntity(), mainMenu(EMenuType::MAIN_MENU), resumeMenu(EMenuType::RESUME_MENU), optionsMenu(EMenuType::OPTIONS_MENU)
 {
 	dummyEntity.PassRenderer(&renderer);
 
@@ -17,8 +17,16 @@ Game::Game() : dummyEntity(), mainMenu(EMenuType::MAIN_MENU), resumeMenu(EMenuTy
 
 	mainMenu.CreateButtons();
 	resumeMenu.CreateButtons();
+	optionsMenu.CreateButtons();
 	mainMenu.StartLoop();
 
+	while (mainMenu.GetOptionsRequested())
+	{
+		optionsMenu.StartLoop();
+		if (optionsMenu.GetMainMenuRequested())
+			mainMenu.StartLoop();
+	}
+		
 	if (!mainMenu.GetExit())
 		GameplayLoop(false);
 
@@ -158,8 +166,20 @@ void Game::GameplayLoop(bool resume)
 	if (menuRequested)
 	{
 		resumeMenu.StartLoop();
-		if (!resumeMenu.GetExit())
+		if (!resumeMenu.GetExit() && !resumeMenu.GetOptionsRequested())
 			GameplayLoop(true);
+		while (resumeMenu.GetOptionsRequested())
+		{
+			optionsMenu.StartLoop();
+			if (optionsMenu.GetMainMenuRequested())
+				resumeMenu.StartLoop();
+		}
+		while (!resumeMenu.GetExit())
+			GameplayLoop(true);
+	}
+	if (mainMenu.GetOptionsRequested())
+	{
+		optionsMenu.StartLoop();
 	}
 }
 

@@ -13,13 +13,15 @@ Menu::~Menu()
 void Menu::StartLoop()
 {
 	bool startGame{ false };
+	optionsRequested = false;
+	mainMenuRequested = false;
 	SDL_Event sdlQuitEvent{ SDL_QUIT };
 
 	renderer->AddToQueue(textures.background_HongKong.GetSDLTexture(), NULL, &dstRect);
 	for (auto & x : buttons)
 		x->AddToRenderQueue();
 
-	while (!exit && !startGame)
+	while (!exit && !startGame && !optionsRequested && !mainMenuRequested)
 	{
 		renderer->Clear();
 		renderer->AddToQueue(textures.background_HongKong.GetSDLTexture(), NULL, &dstRect);
@@ -35,7 +37,6 @@ void Menu::StartLoop()
 
 			if (inputHandler.IsButtonPressed(x))// && !buttonPressHandled)
 			{
-				logger.Log("pressed");
 				if (x->GetType() == EButtonType::EXIT_BUTTON)
 				{
 					SDL_PushEvent(&sdlQuitEvent);
@@ -43,16 +44,16 @@ void Menu::StartLoop()
 				else if (x->GetType() == EButtonType::START_BUTTON)
 				{
 					startGame = true;
-					logger.Log("start game");
 				}
 				else if (x->GetType() == EButtonType::RESUME_BUTTON)
 				{
 					startGame = true;
-					logger.Log("start game");
+				}
+				else if (x->GetType() == EButtonType::OPTIONS_BUTTON)
+				{
+					optionsRequested = true;
 				}
 			}
-				
-
 			x->AddToRenderQueue();
 		}
 			
@@ -60,6 +61,8 @@ void Menu::StartLoop()
 		renderer->Render();
 		if (inputHandler.GetExitRequested())
 			exit = true;
+		else if (inputHandler.GetMenuRequested() && type == EMenuType::OPTIONS_MENU)
+			mainMenuRequested = true;
 	}
 }
 
@@ -77,11 +80,21 @@ void Menu::CreateButtons()
 {
 	if(type == EMenuType::MAIN_MENU)
 		buttons.push_back(NewButton(EButtonType::START_BUTTON, { 0, 0 }));
-	else
+	else if (type == EMenuType::RESUME_MENU)
 		buttons.push_back(NewButton(EButtonType::RESUME_BUTTON, { 0, 0 }));
+	else
+	{
+		buttons.push_back(NewButton(EButtonType::VIDEO_BUTTON, { 0, 0 }));
+		buttons.push_back(NewButton(EButtonType::SOUND_BUTTON, { 0, GLOBAL_buttonHeight }));
+		buttons.push_back(NewButton(EButtonType::GAMEPLAY_BUTTON, { 0, GLOBAL_buttonHeight * 2 }));
 
-	buttons.push_back(NewButton(EButtonType::OPTIONS_BUTTON, { 0, GLOBAL_buttonHeight }));
-	buttons.push_back(NewButton(EButtonType::EXIT_BUTTON, { 0, GLOBAL_buttonHeight * 2 }));
+	}
+	
+	if (type != EMenuType::OPTIONS_MENU)
+	{
+		buttons.push_back(NewButton(EButtonType::OPTIONS_BUTTON, { 0, GLOBAL_buttonHeight }));
+		buttons.push_back(NewButton(EButtonType::EXIT_BUTTON, { 0, GLOBAL_buttonHeight * 2 }));
+	}
 }
 
 bool Menu::IsAnyButtonHighlited()
