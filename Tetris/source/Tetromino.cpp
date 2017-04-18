@@ -40,6 +40,7 @@ void Tetromino::Rotate()
 			switch (currentRotationVariant)
 			{
 			case 1:
+			case 3:
 				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
 				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
 
@@ -48,36 +49,17 @@ void Tetromino::Rotate()
 
 				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -3);
 				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 3);
-				break;
-			case 2:
-				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -1);
-				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
-
-				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -2);
-				blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
-
-				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * -3);
-				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -3);
-				break;
-			case 3:
-				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
-				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
-
-				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 2);
-				blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
-
-				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 3);
-				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -3);
 				break;
 			case 0:
+			case 2:
 				blocks[1]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize);
-				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize);
+				blocks[1]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -1);
 
 				blocks[2]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 2);
-				blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 2);
+				blocks[2]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -2);
 
 				blocks[3]->ChangePosition(EPositionAxis::X, GLOBAL_tetrominoBlockSize * 3);
-				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * 3);
+				blocks[3]->ChangePosition(EPositionAxis::Y, GLOBAL_tetrominoBlockSize * -3);
 				break;
 			}
 			break;
