@@ -57,7 +57,7 @@ private:
 	int framesCounter{ 0 };
 	int counter;
 	
-	void StartGameplayLoop(bool resume);
+	void GameplayLoop(bool resume);
 	int previousRandom{ 0 };
 	bool HandleMoves();
 	void MoveTetrominoDown();

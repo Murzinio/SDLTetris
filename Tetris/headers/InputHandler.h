@@ -50,7 +50,7 @@ public:
 
 	void HandleEvents();
 	bool IsButtonPressed(std::shared_ptr<Button> button);
-	void HandleButtonEvents(std::shared_ptr<Button> button);
+	void SetCurrentButton(std::shared_ptr<Button> button);
 	bool IsMouseOverButton(std::shared_ptr<Button> button);
 	void ClearButtonMouseChecks();
 	EButtonType GetButtonToHighlight();

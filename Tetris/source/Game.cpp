@@ -20,7 +20,7 @@ Game::Game() : dummyEntity(), mainMenu(EMenuType::MAIN_MENU), resumeMenu(EMenuTy
 	mainMenu.StartLoop();
 
 	if (!mainMenu.GetExit())
-		StartGameplayLoop(false);
+		GameplayLoop(false);
 
 	srand(time(NULL));
 }
@@ -37,7 +37,7 @@ Game::~Game()
 */
 
 
-void Game::StartGameplayLoop(bool resume)
+void Game::GameplayLoop(bool resume)
 {
 	previous_update = std::chrono::high_resolution_clock::now();
 
@@ -159,7 +159,7 @@ void Game::StartGameplayLoop(bool resume)
 	{
 		resumeMenu.StartLoop();
 		if (!resumeMenu.GetExit())
-			StartGameplayLoop(true);
+			GameplayLoop(true);
 	}
 }
 

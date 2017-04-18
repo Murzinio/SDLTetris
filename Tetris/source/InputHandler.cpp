@@ -66,7 +66,7 @@ void InputHandler::HandleEvents()
 	}
 }
 
-void InputHandler::HandleButtonEvents(std::shared_ptr<Button> button)
+void InputHandler::SetCurrentButton(std::shared_ptr<Button> button)
 {
 	currentButton = button;
 }
