@@ -6,10 +6,8 @@
 #include <SDL_image.h>
 
 #include "Renderer.h"
-#include "logger.h"
 
 #include "structs.h"
-
 #include "VEScaledDimensions.h"
 
 using namespace VEScaledDimensions;

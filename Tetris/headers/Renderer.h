@@ -1,11 +1,8 @@
 #pragma once
-#include <string>
-#include <cstdint>
 
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include "Logger.h"
 #include "Texture.h"
 
 #include "constants.h"

@@ -1,12 +1,8 @@
 #pragma once
 
-#include <SDL.h>
-
-#include "Logger.h"
 #include "Button.h"
 #include "enums.h"
 #include "constants.h"
-#include "Button.h"
 #include "VEScaledDimensions.h"
 
 struct MousePosition 

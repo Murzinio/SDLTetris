@@ -1,7 +1,4 @@
 #pragma once
-#include <vector>
-#include <chrono>
-#include <stdlib.h> 
 
 #include "Renderer.h"
 #include "InputHandler.h"

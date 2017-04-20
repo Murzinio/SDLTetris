@@ -1,8 +1,4 @@
 #pragma once
-#include <string>
-#include <cstdint>
-#include <memory>
-
 #include <SDL.h>
 #include <SDL_image.h>
 

@@ -1,9 +1,5 @@
 #pragma once
-#include "Logger.h"
 #include "InputHandler.h"
-#include <SDL.h>
-#include <vector>
-#include <string>
 #include "Button.h"
 
 enum class EButtonType;

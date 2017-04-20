@@ -114,7 +114,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\PhantomTetromino.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
