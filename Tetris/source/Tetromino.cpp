@@ -2,7 +2,6 @@
 
 Tetromino::Tetromino()
 {
-	srand(time(NULL));
 }
 
 Tetromino::Tetromino(ETetrominoType t)
@@ -10,7 +9,6 @@ Tetromino::Tetromino(ETetrominoType t)
 	type = t;
 	
 	CreateBlocks();
-	srand(time(NULL));
 }
 
 Tetromino::~Tetromino()

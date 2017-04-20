@@ -30,7 +30,7 @@ Game::Game() : dummyEntity(), mainMenu(EMenuType::MAIN_MENU), resumeMenu(EMenuTy
 	if (!mainMenu.GetExit())
 		GameplayLoop(false);
 
-	srand(time(NULL));
+	srand((uint32_t)time(NULL));
 }
 
 Game::~Game()
@@ -44,6 +44,12 @@ Game::~Game()
 --------- Private ---------
 */
 
+auto Game::GetTimeFromLastUpdate()
+{
+	std::chrono::high_resolution_clock::time_point currentUpdate{ std::chrono::high_resolution_clock::now() };
+	auto lastUpdateDelta = std::chrono::duration_cast<std::chrono::milliseconds>(currentUpdate - previous_update).count();
+	return lastUpdateDelta;
+}
 
 void Game::GameplayLoop(bool resume)
 {
@@ -323,13 +329,6 @@ bool Game::IsPositionFree(ETetrominoMove move)
 	}
 
 	return true;
-}
-
-int Game::GetTimeFromLastUpdate()
-{
-	std::chrono::high_resolution_clock::time_point currentUpdate{ std::chrono::high_resolution_clock::now() };
-	int lastUpdateDelta = std::chrono::duration_cast<std::chrono::milliseconds>(currentUpdate - previous_update).count();
-	return lastUpdateDelta;
 }
 
 bool Game::IsLastRowFilled()

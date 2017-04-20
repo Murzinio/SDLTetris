@@ -44,7 +44,7 @@ private:
 
 	int gameplayInterval{ 1000 };
 	std::chrono::high_resolution_clock::time_point previous_update{ std::chrono::high_resolution_clock::now() };
-	int GetTimeFromLastUpdate();
+	auto GetTimeFromLastUpdate();
 
 	std::vector<std::shared_ptr<Tetromino>> allTetrominos;
 	std::vector<std::shared_ptr<Tetromino>> placedTetrominos;
